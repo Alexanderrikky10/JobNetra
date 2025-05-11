@@ -1,20 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import GeneralInput from "../Elements/GeneralInput/GeneralInput";
 import { FaGoogle } from "react-icons/fa";
 import PasswordInput from "../Elements/PasswordInput/PasswordInput";
+import { DarkMode } from "../../context/DarkMode";
 
 const RegisterForm = () => {
+  const { isDarkMode } = useContext(DarkMode);
   return (
-    <div className="w-full px-8 bg-[var(--accent-light)] py-6 rounded-lg flex flex-col items-start">
-      <h1 className="text-2xl font-bold mb-4 w-full">Welcome</h1>
+    <div
+      className={`${
+        isDarkMode ? "bg-[var(--accent-dark)]" : "bg-[var(--accent-light)]"
+      } w-full px-8 py-6 rounded-lg flex flex-col items-start`}
+    >
+      <h1
+        className={`${
+          isDarkMode ? "text-white" : ""
+        } text-2xl font-bold mb-4 w-full`}
+      >
+        Welcome
+      </h1>
       <form className="mb-5 w-full">
         <GeneralInput
           type="text"
           name="fullname"
           placeholder="John Doe"
           classGeneral="flex flex-col gap-1.5 mb-3"
-          classLabel=" font-semibold"
-          classInput="border-2 border-gray-400 py-2 px-3 rounded-md"
+          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold`}
+          classInput={`${
+            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+          } border-2 border-gray-400 py-2 px-3 rounded-md`}
         >
           Full Name
         </GeneralInput>
@@ -23,8 +37,10 @@ const RegisterForm = () => {
           name="email"
           placeholder="your@email.com"
           classGeneral="flex flex-col gap-1.5 mb-3"
-          classLabel=" font-semibold"
-          classInput="border-2 border-gray-400 py-2 px-3 rounded-md"
+          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold`}
+          classInput={`${
+            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+          } border-2 border-gray-400 py-2 px-3 rounded-md`}
         >
           Email Address
         </GeneralInput>
@@ -33,8 +49,10 @@ const RegisterForm = () => {
           name="password"
           placeholder="*********"
           classGeneral="flex flex-col gap-1.5 mb-3"
-          classLabel=" font-semibold"
-          classInput="w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10"
+          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold`}
+          classInput={`${
+            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+          } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10`}
         >
           Password
         </PasswordInput>
@@ -43,8 +61,10 @@ const RegisterForm = () => {
           name="confirmPassword"
           placeholder="*********"
           classGeneral="flex flex-col gap-1.5 mb-3"
-          classLabel=" font-semibold"
-          classInput="w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10"
+          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold`}
+          classInput={`${
+            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+          } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10`}
         >
           Confirm Password
         </PasswordInput>
@@ -53,11 +73,15 @@ const RegisterForm = () => {
           <GeneralInput
             type="checkbox"
             name="termsconditions"
-            classGeneral="flex justify-center items-center gap-2"
-            classLabel="text-[var(--text-secondary)] order-1"
+            classGeneral="flex justify-center items-center gap-2 group"
+            classLabel={`${
+              isDarkMode
+                ? "text-white hover:text-[var(--dark-hover)] group-hover:text-[var(--dark-hover)]"
+                : "text-[var(--text-secondary)] hover:text-[var(--primary-color)] group-hover:text-[var(--primary-color)]"
+            } order-1 font-medium`}
             classInput=""
           >
-            Agree with our terms and conditions?
+            I agree to the Terms of Service and Privacy Policy
           </GeneralInput>
         </div>
         <button
@@ -75,10 +99,16 @@ const RegisterForm = () => {
 
       <button
         type="button"
-        className="w-full border-2 border-gray-400/20 py-3 rounded-lg flex items-center justify-center gap-3 hover:border-gray-400 transition"
+        className={`w-full border-2 border-gray-400/20 py-3 rounded-lg flex items-center justify-center gap-3 hover:border-gray-400 hover:bg-gray-400 transition`}
       >
         <FaGoogle className="text-red-500 text-xl" />
-        <span className="text-gray-700 font-medium">Sign up with Google</span>
+        <span
+          className={`${
+            isDarkMode ? "text-white" : "text-gray-700"
+          } font-medium`}
+        >
+          Sign up with Google
+        </span>
       </button>
     </div>
   );
