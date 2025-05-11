@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Label from "../GeneralInput/Label";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { DarkMode } from "../../../context/DarkMode";
 
 const PasswordInput = (props) => {
+  const { isDarkMode } = useContext(DarkMode);
   const { name, placeholder, children, classGeneral, classLabel, classInput } =
     props;
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -31,9 +33,17 @@ const PasswordInput = (props) => {
         >
           <span>
             {isPasswordVisible ? (
-              <FaEyeSlash className=" text-[var(--text-secondary)] hover:text-gray-700 cursor-pointer" />
+              <FaEyeSlash
+                className={` ${
+                  isDarkMode ? "text-white" : "text-[var(--text-secondary)]"
+                } hover:text-[var(--dark-hover)] cursor-pointer`}
+              />
             ) : (
-              <FaEye className=" text-[var(--text-secondary)] hover:text-gray-700 cursor-pointer" />
+              <FaEye
+                className={` ${
+                  isDarkMode ? "text-white" : "text-[var(--text-secondary)]"
+                } hover:text-[var(--dark-hover)] cursor-pointer`}
+              />
             )}
           </span>
         </button>
