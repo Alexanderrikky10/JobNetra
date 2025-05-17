@@ -40,28 +40,28 @@ const Navbar = () => {
       </Link>
 
       {/* Desktop Menu */}
-      <div className="hidden sm:flex gap-5">
+      <div className="hidden sm:flex gap-8">
         <Link
           to="/"
-          className="text-[var(--text-nav)] tracking-wide font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
         >
           Home
         </Link>
         <Link
           to="/tutorial"
-          className="text-[var(--text-nav)] tracking-wide font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
         >
           Tutorial
         </Link>
         <Link
           to="/jobs"
-          className="text-[var(--text-nav)] tracking-wide font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
         >
           Jobs
         </Link>
         <Link
           to="/about"
-          className="text-[var(--text-nav)] tracking-wide font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
         >
           About
         </Link>
