@@ -9,7 +9,7 @@ const LoginForm = () => {
   return (
     <div
       className={`${
-        isDarkMode ? "bg-[var(--accent-dark)]" : "bg-[var(--accent-light)]"
+        isDarkMode ? "bg-[var(--accent-dark)]" : "bg-white"
       } w-full px-8 py-6 rounded-lg flex flex-col items-start`}
     >
       <h1
