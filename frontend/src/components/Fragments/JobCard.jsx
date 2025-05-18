@@ -4,7 +4,7 @@ import { FaLocationPin } from "react-icons/fa6";
 
 const JobCard = ({ title, location, salary, type, link, company }) => {
   return (
-    <div className="w-full bg-white py-5 px-7 rounded-lg">
+    <div className="shadow-md shadow-black/20 w-full bg-white py-5 px-7 rounded-lg">
       <div className="flex justify-between items-center">
         <div className="flex gap-3 items-center">
           <div className="p-2 bg-[var(--bg-light)] rounded-lg">

@@ -4,9 +4,9 @@ import { FaSearch } from "react-icons/fa";
 import Select from "react-select";
 import { locationOptions } from "../services/city";
 import { FaPaperPlane, FaUserPlus } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const customStyles = {
+const customStyles = (hasError) => ({
   control: (base, state) => ({
     ...base,
     backgroundColor: "white",
@@ -14,16 +14,21 @@ const customStyles = {
     borderRadius: "0.375rem", // rounded-md
     borderWidth: "2px",
     borderStyle: "solid",
-    borderColor: state.isFocused ? "var(--secondary-color)" : "var(--bg-light)",
-    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.2)", // shadow-md shadow-black/20
+    borderColor: hasError
+      ? "#ef4444" // Tailwind red-500
+      : state.isFocused
+      ? "var(--secondary-color)"
+      : "var(--bg-light)",
+    boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.2)", // shadow-md
     "&:hover": {
-      borderColor: "var(--secondary-color)",
+      borderColor: hasError ? "#ef4444" : "var(--secondary-color)",
     },
     fontSize: "0.875rem", // text-sm
   }),
+  // ... keep the rest unchanged
   valueContainer: (base) => ({
     ...base,
-    padding: "0.5rem", // py-2 px-2
+    padding: "0.5rem",
     fontSize: "0.875rem",
   }),
   input: (base) => ({
@@ -34,7 +39,7 @@ const customStyles = {
   }),
   indicatorsContainer: (base) => ({
     ...base,
-    paddingRight: "0.5rem", // aligns with px-2
+    paddingRight: "0.5rem",
     height: "auto",
   }),
   dropdownIndicator: (base) => ({
@@ -48,7 +53,7 @@ const customStyles = {
   placeholder: (base) => ({
     ...base,
     fontSize: "0.875rem",
-    color: "#9ca3af", // text-gray-400
+    color: "#9ca3af",
   }),
   singleValue: (base) => ({
     ...base,
@@ -58,14 +63,42 @@ const customStyles = {
     ...base,
     fontSize: "0.875rem",
   }),
-};
+});
 
 const HomePage = () => {
-  const [selectedLocation, setSelectedLocation] = useState(null);
+  const navigate = useNavigate();
+
+  const [selectedLocation, setSelectedLocation] = useState({});
+  const [keyword, setKeyword] = useState("");
+  const [formError, setFormError] = useState(false);
 
   const handleChange = (selectedOption) => {
     setSelectedLocation(selectedOption);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!keyword.trim() || !selectedLocation?.value) {
+      setFormError(true);
+      return;
+    }
+
+    const location = selectedLocation.value;
+    const keywords = keyword;
+
+    const queryParams = new URLSearchParams();
+    if (keywords) queryParams.set("keywords", keywords);
+    if (location) queryParams.set("location", location);
+    queryParams.set("page", 1);
+
+    setKeyword("");
+    setSelectedLocation({});
+    setFormError(false);
+
+    navigate(`/jobs?${queryParams.toString()}`);
+  };
+
   return (
     <NavLayout>
       <section className="flex gap-20 pt-12 items-center px-20">
@@ -135,14 +168,23 @@ const HomePage = () => {
         <p className="mt-4 text-lg text-white text-center">
           Discover opportunities from top companies
         </p>
-        <form className="mt-10 flex flex-col sm:flex-row gap-2 w-full">
+        <form
+          className="mt-10 flex flex-col sm:flex-row gap-2 w-full"
+          onSubmit={handleSubmit}
+        >
           <div className="flex-[7] flex flex-col gap-2">
             <input
-              className="bg-white py-2 px-2 rounded-md shadow-md shadow-black/20 border-2 border-[var(--bg-light)] hover:border-[var(--secondary-color)] "
+              className={`${
+                formError && !keyword.trim()
+                  ? "border-red-500"
+                  : "border-[var(--bg-light)] hover:border-[var(--secondary-color)]"
+              } bg-white py-2 px-2 rounded-md shadow-md shadow-black/20 border-2`}
               type="text"
               name="keywords"
               id="keywords"
               placeholder="Search jobs, companies, or keywords"
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
             />
             <div>
               <Select
@@ -152,7 +194,7 @@ const HomePage = () => {
                 onChange={handleChange}
                 placeholder="Select location"
                 isSearchable
-                styles={customStyles}
+                styles={customStyles(formError && !selectedLocation?.value)}
               />
             </div>
           </div>

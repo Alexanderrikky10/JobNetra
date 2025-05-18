@@ -8,7 +8,6 @@ import HomePage from "./pages/home";
 
 function App() {
   const { isDarkMode } = useContext(DarkMode);
-  console.log(isDarkMode);
   return (
     <div
       className={`w-full min-h-screen ${
