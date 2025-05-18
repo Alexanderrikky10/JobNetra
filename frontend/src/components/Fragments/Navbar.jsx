@@ -43,25 +43,25 @@ const Navbar = () => {
       <div className="hidden sm:flex gap-8">
         <Link
           to="/"
-          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)]"
         >
           Home
         </Link>
         <Link
           to="/tutorial"
-          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)]"
         >
           Tutorial
         </Link>
         <Link
           to="/jobs"
-          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)]"
         >
           Jobs
         </Link>
         <Link
           to="/about"
-          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)]"
         >
           About
         </Link>
@@ -93,28 +93,28 @@ const Navbar = () => {
       >
         <Link
           to="/"
-          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
           onClick={() => setMenuOpen(false)}
         >
           Home
         </Link>
         <Link
           to="/tutorial"
-          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
           onClick={() => setMenuOpen(false)}
         >
           Tutorial
         </Link>
         <Link
           to="/jobs"
-          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
           onClick={() => setMenuOpen(false)}
         >
           Jobs
         </Link>
         <Link
           to="/about"
-          className="text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)]"
+          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
           onClick={() => setMenuOpen(false)}
         >
           About
