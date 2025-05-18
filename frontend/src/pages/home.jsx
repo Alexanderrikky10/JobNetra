@@ -79,15 +79,15 @@ const HomePage = () => {
             opportunities tailored to your skills and preferences.
           </p>
 
-          <div className="mt-7 flex gap-1 w-full">
+          <div className="mt-7 flex flex-col sm:flex-row gap-1 w-full">
             <button
-              className="shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-[var(--primary-color)] text-white font-semibold rounded-lg hover:bg-[var(--primary-hover)]"
+              className="cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-[var(--primary-color)] text-white font-semibold rounded-lg hover:bg-[var(--primary-hover)]"
               type="button"
             >
               Try our powerful Machine Learning
             </button>
             <button
-              className="shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-white text-[var(--primary-color)] border border-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--primary-color)] hover:text-white"
+              className="cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-white text-[var(--primary-color)] border border-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--primary-color)] hover:text-white"
               type="button"
             >
               Learn More
@@ -126,7 +126,11 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="mt-20 py-8 shadow-black/20 shadow-md px-7 sm:px-16 rounded-4xl flex flex-col items-center bg-[var(--primary-color)] w-10/12 mx-auto">
+      <section
+        className="mt-20 py-8 shadow-black/20 shadow-md px-7 sm:px-16
+        rounded-4xl flex flex-col items-center bg-[var(--primary-color)] w-10/12
+        mx-auto"
+      >
         <h2 className="text-4xl font-bold text-white">Job Search</h2>
         <p className="mt-4 text-lg text-white text-center">
           Discover opportunities from top companies

@@ -43,25 +43,26 @@ const Navbar = () => {
       <div className="hidden sm:flex gap-8">
         <Link
           to="/"
-          className="text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)]"
+          className="relative text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
         >
           Home
         </Link>
         <Link
-          to="/tutorial"
-          className="text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)]"
-        >
-          Tutorial
-        </Link>
-        <Link
           to="/jobs"
-          className="text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)]"
+          className="relative text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
         >
           Jobs
         </Link>
         <Link
+          to="/tutorial"
+          className="relative text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
+        >
+          Tutorial
+        </Link>
+
+        <Link
           to="/about"
-          className="text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)]"
+          className="relative text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
         >
           About
         </Link>
@@ -69,7 +70,7 @@ const Navbar = () => {
 
       {/* Desktop Button */}
       <Link
-        to="/signin"
+        to="/login"
         className="hidden sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"
       >
         Sign In
@@ -99,19 +100,20 @@ const Navbar = () => {
           Home
         </Link>
         <Link
-          to="/tutorial"
-          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
-          onClick={() => setMenuOpen(false)}
-        >
-          Tutorial
-        </Link>
-        <Link
           to="/jobs"
           className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
           onClick={() => setMenuOpen(false)}
         >
           Jobs
         </Link>
+        <Link
+          to="/tutorial"
+          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
+          onClick={() => setMenuOpen(false)}
+        >
+          Tutorial
+        </Link>
+
         <Link
           to="/about"
           className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
