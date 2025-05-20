@@ -21,8 +21,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 def read_excel():
-    df = pd.read_excel('judul_pekerjaan/try_pekerjaan_dan_skill_score_45.xlsx')
-    # df.drop(["nama_pekerjaan", "similarity_score"], axis=1, inplace=True)
+    df = pd.read_excel('judul_pekerjaan/data_80_persen_training.xlsx')
+    df.drop(["nama_pekerjaan", "similarity_score"], axis=1, inplace=True)
     return df
 
 def output_read(df_data):
