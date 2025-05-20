@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavLayout from "../components/Layouts/NavLayout";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
@@ -14,6 +14,8 @@ const DetailJobPage = () => {
   const [isError, setIsError] = useState("");
   const [totalJob, setTotalJob] = useState(0);
   const [page, setPage] = useState(0);
+
+  const selectComponent = useRef(null);
 
   useEffect(() => {
     async function fetchData(keywords, location, page, salary) {
@@ -39,9 +41,13 @@ const DetailJobPage = () => {
     const location = searchParams.get("location");
     const page = searchParams.get("page");
     const salary = searchParams.get("salary");
+
     if (!keywords || !location || !page) {
       navigate("/");
       return;
+    }
+    if (salary) {
+      selectComponent.current.value = salary;
     }
     fetchData(keywords, location, page, salary);
   }, [navigate, searchParams]);
@@ -93,6 +99,7 @@ const DetailJobPage = () => {
               id="salary"
               defaultValue={""}
               onChange={handleAddSalary}
+              ref={selectComponent}
             >
               <option disabled value={""}>
                 Select min salary
