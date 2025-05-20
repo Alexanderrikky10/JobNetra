@@ -5,58 +5,84 @@ import os
 def create_dummy_data():
     data = {
         'skill': [
-        ["python", "data analysis", "pandas"],
-        ["javascript", "react"],
-        ["accounting", "excel", "finance"],
-        ["python", "keras", "deep learning", "tensorflow", "ai"],
-        ["photoshop", "illustrator", "design"],
-        ["python", "machine learning", "numpy", "data science"],
-        ["javascript", "vue", "frontend"],
-        ["accounting", "quickbooks", "taxation", "audit", "ledger"],
-        ["python", "pytorch", "ai", "ml"],
-        ["photoshop", "canva", "graphics", "branding"],
-        ["python", "deep learning", "tensorflow", "pandas", "scikit-learn"],
-        ["javascript", "angular", "web"],
-        ["accounting", "auditing", "ledger", "taxation"],
-        ["python", "scikit-learn", "ml", "data visualization"],
-        ["photoshop", "sketch", "branding"],
-        ["python", "ai", "data science", "statistics"],
-        ["javascript", "nodejs", "backend", "express"],
-        ["accounting", "budgeting", "finance"],
-        ["python", "tensorflow", "neural networks"],
-        ["photoshop", "indesign", "editing", "vector"],
-        ["python", "machine learning", "matplotlib", "data cleaning"],
-        ["javascript", "html", "css"],
-        ["accounting", "payroll", "bookkeeping"],
-        ["python", "data visualization", "seaborn", "matplotlib"],
-        ["photoshop", "adobe", "digital art", "illustration"]
+            # === Backend Developer ===
+            ["java", "spring", "backend"],
+            ["python", "flask", "api", "rest"],
+            ["java", "microservices", "kafka"],
+            ["nodejs", "api", "express"],
+            ["golang", "grpc", "backend", "concurrency"],
+            
+            # === Frontend Developer ===
+            ["html", "css", "javascript", "responsive design"],
+            ["typescript", "react", "redux"],
+            ["javascript", "nextjs", "tailwind"],
+            ["vue", "vuetify", "component design"],
+            ["svelte", "html", "css", "frontend"],
+            
+            # === Data Analyst ===
+            ["r", "statistics", "data wrangling", "ggplot2"],
+            ["excel", "bookkeeping", "tax calculation"],
+            ["python", "streamlit", "dashboard"],
+            ["powerbi", "data modeling", "reporting"],
+            ["sql", "data cleaning", "data analysis"],
+            
+            # === Graphic Designer ===
+            ["adobe xd", "ui design", "prototyping"],
+            ["figma", "typography", "layout"],
+            ["illustrator", "vector art", "branding"],
+            ["photoshop", "poster design", "retouching"],
+            ["coreldraw", "logo", "print design"],
+            
+            # === ML Engineer ===
+            ["python", "nlp", "transformer", "bert"],
+            ["python", "openCV", "image processing"],
+            ["python", "data mining", "etl", "big data"],
+            ["python", "recommender systems", "pandas"],
+            ["python", "unsupervised learning", "clustering"],
+            
+            # === Financial Analyst ===
+            ["financial modeling", "excel", "forecasting"],
+            ["finance", "cost analysis", "profitability"],
+            ["accounting", "erp", "journal entry"],
+            ["budgeting", "investment analysis", "valuation"],
+            ["tax planning", "spreadsheet", "financial reporting"]
         ],
         'nama_pekerjaan_terbaik': [
-            "Data Scientist",
+            "Backend Developer",
+            "Backend Developer",
+            "Backend Developer",
+            "Backend Developer",
+            "Backend Developer",
+            
             "Frontend Developer",
-            "Accountant",
-            "ML Engineer",
+            "Frontend Developer",
+            "Frontend Developer",
+            "Frontend Developer",
+            "Frontend Developer",
+            
+            "Data Analyst",
+            "Data Analyst",
+            "Data Analyst",
+            "Data Analyst",
+            "Data Analyst",
+            
             "Graphic Designer",
-            "Data Scientist",
-            "Frontend Developer",
-            "Accountant",
-            "ML Engineer",
             "Graphic Designer",
-            "Data Scientist",
-            "Frontend Developer",
-            "Accountant",
-            "ML Engineer",
             "Graphic Designer",
-            "Data Scientist",
-            "Frontend Developer",
-            "Accountant",
-            "ML Engineer",
             "Graphic Designer",
-            "Data Scientist",
-            "Frontend Developer",
-            "Accountant",
+            "Graphic Designer",
+            
             "ML Engineer",
-            "Graphic Designer"
+            "ML Engineer",
+            "ML Engineer",
+            "ML Engineer",
+            "ML Engineer",
+            
+            "Financial Analyst",
+            "Financial Analyst",
+            "Financial Analyst",
+            "Financial Analyst",
+            "Financial Analyst"
         ]
     }
     df = pd.DataFrame(data)

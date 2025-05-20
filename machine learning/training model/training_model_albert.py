@@ -10,6 +10,7 @@ import tensorflow as tf
 # from tensorflow.python.keras.models import Model
 from tensorflow.keras.layers import Dense, Input, Dropout, Lambda
 from tensorflow.keras.models import Model
+from tensorflow.keras.regularizers import l2
 from transformers import AlbertTokenizer, TFAlbertModel
 # from keras.layers import Input, Dense, Dropout, Lambda
 # from keras.models import Model
@@ -20,8 +21,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 
 def read_excel():
-    df = pd.read_excel('judul_pekerjaan/data_80_persen_training.xlsx')
-    df.drop(["nama_pekerjaan", "similarity_score"], axis=1, inplace=True)
+    df = pd.read_excel('judul_pekerjaan/try_pekerjaan_dan_skill_score_45.xlsx')
+    # df.drop(["nama_pekerjaan", "similarity_score"], axis=1, inplace=True)
     return df
 
 def output_read(df_data):
@@ -37,7 +38,7 @@ class AlbertClassifier(Model):
         local_path = "model/model_albert_base_v2"
         self.bert = TFAlbertModel.from_pretrained(local_path)
         self.dropout = Dropout(dropout_rate)
-        self.classifier = Dense(num_classes, activation='softmax')
+        self.classifier = Dense(num_classes, activation='softmax', kernel_regularizer=l2(0.01))
 
     def call(self, inputs, training=False):
         outputs = self.bert(
@@ -45,7 +46,7 @@ class AlbertClassifier(Model):
             attention_mask=inputs['attention_mask'],
             training=training
         )
-        pooled_output = outputs.pooler_output  # Lebih umum dan stabil
+        pooled_output = outputs.pooler_output
         # pooled_output = outputs.last_hidden_state[:, 0]
         x = self.dropout(pooled_output, training=training)
         return self.classifier(x)
@@ -61,28 +62,36 @@ class CustomCallback(Callback):
         os.makedirs(self.save_dir_tflite, exist_ok=True)
         self.tokenizer = tokenizer
         self.label_encoder = label_encoder
+        self.best_val_acc = 0.0
 
     def on_epoch_end(self, epoch, logs=None):
         val_acc = logs.get('val_accuracy')
         train_acc = logs.get('accuracy')
         if val_acc:
-            acc_str = f"{val_acc:.3f}"
-            name = f"epoch_{epoch+1}_accuracy_{acc_str}"
+            acc_str_val = f"{val_acc:.3f}"
+            acc_str_train = f"{train_acc:.3f}"
 
-            # Save pb
-            self.model_ref.save(os.path.join(self.save_dir_pb, name), save_format="tf")
+            if val_acc > self.best_val_acc:
+                name = f"epoch_{epoch+1}_accuracyval_{acc_str_val}_accuracytrain_{acc_str_train}"
+                self.best_val_acc = val_acc
+                print("Hasil validasi accuracy terbaik ditemukan, menyimpan model...")
+                
+                # Save pb
+                self.model_ref.save(os.path.join(self.save_dir_pb, name), save_format="tf")
 
-            # Save TFLite
-            converter = tf.lite.TFLiteConverter.from_keras_model(self.model_ref)
-            tflite_model = converter.convert()
-            with open(os.path.join(self.save_dir_tflite, f"{name}.tflite"), "wb") as f:
-                f.write(tflite_model)
+                # Save TFLite
+                converter = tf.lite.TFLiteConverter.from_keras_model(self.model_ref)
+                tflite_model = converter.convert()
+                with open(os.path.join(self.save_dir_tflite, f"{name}.tflite"), "wb") as f:
+                    f.write(tflite_model)
+                
+                print(f"[INFO] Saved model: {name}.h5 and .tflite")
+
 
             # Stop accuracy
             if val_acc >= 0.85 and train_acc >= 0.80:
                 self.model_ref.stop_training = True
 
-            print(f"[INFO] Saved model: {name}.h5 and .tflite")
 
 def save_artifacts(label_encoder, tokenizer):
     os.makedirs("saved_model/artifacts", exist_ok=True)
@@ -144,7 +153,7 @@ def train_model(train_inputs, test_inputs, y_train, y_test, num_classes, tokeniz
     model = AlbertClassifier(num_classes)
 
     # Compile
-    optimizer = tf.keras.optimizers.Adam(learning_rate=2e-5)
+    optimizer = tf.keras.optimizers.Adam(learning_rate=0.5) #learning_Rate=2e-5
     model.compile(optimizer=optimizer,
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
@@ -189,70 +198,3 @@ def train_model(train_inputs, test_inputs, y_train, y_test, num_classes, tokeniz
 df_data = read_excel()
 output_read(df_data)
 processing(df_data)
-
-
-
-
-# def processing(df_data):
-#     X = df_data['skill'].fillna("")
-#     y = df_data['nama_pekerjaan_terbaik']
-
-#     vectorizer = TfidfVectorizer()
-#     # vectorizer = TfidfVectorizer(max_features=5000)
-#     X_tfidf = vectorizer.fit_transform(X)
-#     le = LabelEncoder()
-#     y_encoded = le.fit_transform(y)
-
-#     X_train, X_test, y_train, y_test = train_test_split(X_tfidf, y_encoded, test_size=0.2, random_state=42)    
-    
-#     train_model(X_train, X_test, y_train, y_test, X_tfidf, y_encoded)
-
-
-# def train_model(X_train, X_test, y_train, y_test, X_tfidf, y_encoded, batch_size=1024, epochs=10):
-#     input_dim = X_train.shape[1]
-#     num_classes = len(np.unique(y_encoded))
-    
-#     # model = Sequential()
-#     # model.add(Dense(128, activation='relu', input_shape=(X_tfidf.shape[1],)))
-#     # model.add(Dense(64, activation='relu'))
-#     # model.add(Dense(len(np.unique(y_encoded)), activation='softmax'))
-
-#     # model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-
-#     model = Sequential([
-#         Dense(128, activation='relu', input_shape=(input_dim,)),
-#         Dense(64, activation='relu'),
-#         Dense(num_classes, activation='softmax')
-#     ])
-
-#     model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-#     # Generator
-#     def generator(X, y, batch_size):
-#         for i in range(0, X.shape[0], batch_size):
-#             yield X[i:i+batch_size].toarray().astype(np.float32), y[i:i+batch_size]
-
-#     train_ds = tf.data.Dataset.from_generator(
-#         lambda: generator(X_train, y_train, batch_size),
-#         output_signature=(
-#             tf.TensorSpec(shape=(None, input_dim), dtype=tf.float32),
-#             tf.TensorSpec(shape=(None,), dtype=tf.int32)
-#         )
-#     ).prefetch(1)
-
-#     val_ds = tf.data.Dataset.from_generator(
-#         lambda: generator(X_test, y_test, batch_size),
-#         output_signature=(
-#             tf.TensorSpec(shape=(None, input_dim), dtype=tf.float32),
-#             tf.TensorSpec(shape=(None,), dtype=tf.int32)
-#         )
-#     ).prefetch(1)
-
-#     # Fit model
-#     model.fit(train_ds, epochs=epochs, validation_data=val_ds, verbose=1)
-
-#     # model.fit(X_train.toarray(), y_train, epochs=10, validation_data=(X_test.toarray(), y_test))
-
-#     # Evaluasi model
-#     loss, acc = model.evaluate(X_test.toarray(), y_test)
-#     print(f"Akurasi Uji: {acc:.2f}")
-

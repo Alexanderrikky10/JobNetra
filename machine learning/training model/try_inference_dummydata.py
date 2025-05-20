@@ -5,7 +5,7 @@ import os
 import numpy as np
 
 # 1. Load model 
-model_path = r"C:\Users\Acer\Algoritma python\DBS - Coding Camp\ubah data\saved_model\pb\epoch_10_accuracy_1.000"
+model_path = r"C:\Users\Acer\Algoritma python\DBS - Coding Camp\ubah data\saved_model\pb\epoch_7_accuracy_1.000"
 loaded_model = tf.saved_model.load(model_path)
 inference_fn = loaded_model.signatures["serving_default"]
 
