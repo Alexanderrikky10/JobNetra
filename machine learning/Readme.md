@@ -12,7 +12,7 @@ https://www.python.org/downloads/release/python-3110/
    - Pilih versi python 3.11 dan lakukan proses pembuatan env
    - Jika sudah, ketik di terminal **.venv\Scripts\activate**
 7. Install semua library dengan perintah "pip install -r requirements.txt"
-8. Masuk ke folder **training model/training_model.py** kemudian klik run di pojok kanan atas.
+8. Masuk ke folder **training model/training_model_albert.py** kemudian klik run di pojok kanan atas.
 
 
 # Format Folder
@@ -32,7 +32,7 @@ https://www.python.org/downloads/release/python-3110/
 │
 ├── 📁 judul_pekerjaan/
 |   ├── 📄 data_20_persen_testing.xlsx
-|   ├── 📄 data_80_persen_testing.xlsx
+|   ├── 📄 data_80_persen_training.xlsx
 |   ├── 📄 pekerjaan_dan_skill_fix - BACKUP - 01 - original.csv
 |   ├── 📄 pekerjaan_dan_skill_fix - BACKUP - 02 - sebelum cleaning manual.csv
 |   ├── 📄 pekerjaan_dan_skill_fix - BACKUP - 03 - hasil convert pekerjaan_dan_skill_fix.csv
