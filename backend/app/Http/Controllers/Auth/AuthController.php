@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -26,12 +27,19 @@ class AuthController extends Controller
             ]);
 
         }
-        // return $user->createToken($request->device_name)->plainTextToken;
         return response()->json([
             'token' => $user->createToken($request->device_name)->plainTextToken,
             'user' => $user,
         ]);
     }
+
+    // public function me(Request $request)
+    // {
+    //     $token = personal_access_tokens::where('token', hash('sha256', $request->bearerToken()))->first();
+    //     return response()->json([
+    //         'token' => $token,
+    //     ]);
+    // }
 
     public function register(Request $request)
     {
@@ -49,7 +57,7 @@ class AuthController extends Controller
         ]);
 
         return response()->json([
-            'token' => $user->createToken($request->device_name)->plainTextToken,
+            'massage' => 'User created successfully',
             'user' => $user,
         ]);
     }
@@ -59,5 +67,4 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Logged out successfully']);
     }
-
 }
