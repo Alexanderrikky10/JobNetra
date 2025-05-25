@@ -26,9 +26,13 @@ unique_skill= list(unique_skills)
 
 print("membuang skill unik dan aneh...")
 df_skill = pd.DataFrame(unique_skill, columns=['skill'])
-df_skill.drop_duplicates(inplace=True)
 df_skill = df_skill[~df_skill['skill'].str.contains('""', na=False)]
+df_skill = df_skill[~df_skill['skill'].str.contains('drug', na=False)]
+df_skill = df_skill[~df_skill['skill'].str.contains('alcohol', na=False)]
+df_skill = df_skill[~df_skill['skill'].str.contains(r'\$', na=False)]
+df_skill = df_skill[~df_skill['skill'].str.contains(r'\b\d{4}\b', na=False)]
 df_skill = df_skill.dropna(subset=['skill'])
+df_skill.drop_duplicates(inplace=True)
 df_skill.reset_index(drop=True, inplace=True)
 
 print("Membuat ke file json ...")

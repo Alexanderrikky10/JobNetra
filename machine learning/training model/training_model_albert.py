@@ -1,28 +1,34 @@
 import pandas as pd
 import os
 import pickle
-from tensorflow.keras.callbacks import Callback
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer
 import tensorflow as tf
 # from tensorflow.python.keras.layers import Input, Dense, Dropout, Lambda
 # from tensorflow.python.keras.models import Model
-from tensorflow.keras.layers import Dense, Input, Dropout, Lambda
-from tensorflow.keras.models import Model
-from tensorflow.keras.regularizers import l2
+
+# from tensorflow.keras.callbacks import Callback
+# from tensorflow.keras.layers import Dense, Input, Dropout, Lambda
+# from tensorflow.keras.models import Model
+# from tensorflow.keras.regularizers import l2
+
 from transformers import AlbertTokenizer, TFAlbertModel
-# from keras.layers import Input, Dense, Dropout, Lambda
-# from keras.models import Model
+
+from keras.callbacks import Callback
+from keras.layers import Input, Dense, Dropout, Lambda
+from keras.models import Model
+from keras.regularizers import l2
 # from keras import layers, models, Model
 # from keras.models import Sequential
 # from keras.layers import Dense
+
 import numpy as np
 from sklearn.model_selection import train_test_split
 
 def read_excel():
     df = pd.read_excel('judul_pekerjaan/data_80_persen_training.xlsx')
-    df.drop(["nama_pekerjaan", "similarity_score"], axis=1, inplace=True)
+    # df.drop(["nama_pekerjaan", "similarity_score"], axis=1, inplace=True)
     return df
 
 def output_read(df_data):
