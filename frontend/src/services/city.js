@@ -1,4 +1,5 @@
 export const locationOptions = [
+  { value: "remote", label: "Remote" },
   { value: "jakarta", label: "Jakarta" },
   { value: "surabaya", label: "Surabaya" },
   { value: "bandung", label: "Bandung" },

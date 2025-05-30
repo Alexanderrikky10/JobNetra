@@ -26,7 +26,7 @@ const constructRequestData = (keywords, location, page, salary = null) => {
       keywords: keywords,
       location: location,
       page: page,
-      ResultOnPage: 20,
+      ResultOnPage: 10,
       salary,
     };
   }
@@ -35,6 +35,6 @@ const constructRequestData = (keywords, location, page, salary = null) => {
     keywords: keywords,
     location: location,
     page: page,
-    ResultOnPage: 20,
+    ResultOnPage: 10,
   };
 };
