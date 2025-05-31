@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GiSuitcase } from "react-icons/gi";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const location = useLocation();
 
   // Toggle menu visibility
   const toggleMenu = () => {
@@ -43,7 +44,11 @@ const Navbar = () => {
       <div className="hidden sm:flex gap-8">
         <Link
           to="/"
-          className="relative text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
+          className={`${
+            location.pathname === "/"
+              ? "text-[var(--primary-hover)] after:scale-x-100"
+              : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+          } relative font-bold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
         >
           Home
         </Link>
@@ -55,14 +60,22 @@ const Navbar = () => {
         </Link> */}
         <Link
           to="/tutorial"
-          className="relative text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
+          className={`${
+            location.pathname === "/tutorial"
+              ? "text-[var(--primary-hover)] after:scale-x-100"
+              : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+          } relative font-bold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
         >
           Tutorial
         </Link>
 
         <Link
           to="/about"
-          className="relative text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
+          className={`${
+            location.pathname === "/about"
+              ? "text-[var(--primary-hover)] after:scale-x-100"
+              : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+          } relative font-bold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
         >
           About
         </Link>
@@ -94,7 +107,11 @@ const Navbar = () => {
       >
         <Link
           to="/"
-          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
+          className={`${
+            location.pathname === "/"
+              ? "text-[var(--primary-hover)] after:scale-x-100"
+              : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+          } text-center relative font-semibold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
           onClick={() => setMenuOpen(false)}
         >
           Home
@@ -108,7 +125,11 @@ const Navbar = () => {
         </Link> */}
         <Link
           to="/tutorial"
-          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
+          className={`${
+            location.pathname === "/tutorial"
+              ? "text-[var(--primary-hover)] after:scale-x-100"
+              : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+          } text-center relative font-semibold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
           onClick={() => setMenuOpen(false)}
         >
           Tutorial
@@ -116,7 +137,11 @@ const Navbar = () => {
 
         <Link
           to="/about"
-          className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
+          className={`${
+            location.pathname === "/about"
+              ? "text-[var(--primary-hover)] after:scale-x-100"
+              : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+          } text-center relative font-semibold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
           onClick={() => setMenuOpen(false)}
         >
           About

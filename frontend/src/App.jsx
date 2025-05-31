@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { DarkMode } from "./context/DarkMode";
 import DetailJobPage from "./pages/detailJob";
 import HomePage from "./pages/home";
+import AboutPage from "./pages/about";
 
 function App() {
   const { isDarkMode } = useContext(DarkMode);
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/jobs" element={<DetailJobPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </BrowserRouter>
     </div>

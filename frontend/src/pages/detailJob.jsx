@@ -80,7 +80,7 @@ const DetailJobPage = () => {
 
   return (
     <NavLayout>
-      <section className="min-h-screen px-10 md:px-20 pt-10 flex flex-col items-center justify-between">
+      <section className="min-h-11/12 px-10 md:px-20 pt-10 flex flex-col items-center justify-between">
         <div className="w-full flex flex-col">
           <div className="w-full flex justify-between">
             <h2 className="text-3xl font-semibold">Recommended Jobs</h2>

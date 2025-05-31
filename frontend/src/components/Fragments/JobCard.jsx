@@ -23,7 +23,7 @@ const JobCard = ({ title, location, salary, type, link, company }) => {
           <FaArrowRight className="text-[var(--primary-color)] hover:text-[var(--primary-hover)]" />
         </a>
       </div>
-      <div className="mt-4 flex gap-4">
+      <div className="mt-4 flex flex-col md:flex-row gap-4">
         <div className="flex gap-1 items-center">
           <FaLocationPin className="text-red-800" />
           <p className="text-[var(--text-secondary)]">{location}</p>
