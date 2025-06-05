@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Symfony\Component\Clock\now;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -33,14 +35,6 @@ class AuthController extends Controller
         ]);
     }
 
-    // public function me(Request $request)
-    // {
-    //     $token = personal_access_tokens::where('token', hash('sha256', $request->bearerToken()))->first();
-    //     return response()->json([
-    //         'token' => $token,
-    //     ]);
-    // }
-
     public function register(Request $request)
     {
         $request->validate([
@@ -67,4 +61,5 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
         return response()->json(['message' => 'Logged out successfully']);
     }
+
 }

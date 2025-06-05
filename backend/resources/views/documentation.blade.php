@@ -412,7 +412,7 @@ a:hover {
           <ul>
             <li><strong>URL:</strong> <code>/changepassword</code></li>
             <li>
-              <strong>Method:</strong> <span class="method post">POST</span>
+              <strong>Method:</strong> <span class="method post">patch</span>
             </li>
             <li>
               <strong>Headers:</strong>
