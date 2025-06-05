@@ -1,27 +1,41 @@
-# JobNetra
-web untuk menentukan perkerjaan yang cocok berdasarkan skil dengan mengunakan mesin learning 
+# 🧠 JobNetra
+
+**JobNetra** adalah platform web pencari kerja berbasis skill yang menggunakan teknologi **Machine Learning**. Pengguna dapat memasukkan skill atau hobi mereka, lalu sistem akan merekomendasikan pekerjaan yang paling sesuai berdasarkan data yang dianalisis.
 
 ---
-## penting
-untuk yang project kita untuk uji coba itu di push di bagian branch dev bisa kawan" lihat di situ 
-<br>
-jika ada yang masih belum bisa mengunakan laravel ikuti tutorial berikut. <a href="https://youtu.be/nW60yGRoUrs?si=9ale4pJfhgQucenp" >instalasi dari awal dengan laragon</a>
 
-### pul project kita terlebih dahulu
+## 🚀 Fitur Utama
 
-- untuk pul bisa dengan codi berikut : git clone https://github.com/alexanderrikky10/JobNetra.git
-- setalahnya masukan lagi code berikut untuk menarik project kita: git pull origin main
-- jika masuh belum bisa pelajari lewat youtub 
+- Pencarian pekerjaan berdasarkan **skill/hobi** pengguna
+- Integrasi dengan **model Machine Learning**
+- Dibangun menggunakan **React.js**, **React Query**, **Yup**, **React Hook Form**, dan **React Router**
+- Kolaborasi tim lintas fungsi (6 anggota), fokus pada pembagian kerja dan integrasi RESTful API
+- Manajemen state dengan **Context API**
+- Versi dev dikelola melalui **branch `dev`**
 
+---
 
+## 📌 Penting
 
+📂 **Branch Development**  
+Untuk uji coba dan pengembangan terkini, silakan cek kode di **branch `dev`**.
 
+🎓 **Belum bisa pakai Laravel?**  
+Ikuti tutorial instalasi Laravel dari awal menggunakan Laragon di sini:  
+[👉 Klik untuk menonton tutorial](https://youtu.be/nW60yGRoUrs?si=9ale4pJfhgQucenp)
 
+---
 
+## 📦 Cara Clone Project
 
+```bash
+# Clone repository ke lokal
+git clone https://github.com/alexanderrikky10/JobNetra.git
 
+# Masuk ke folder project
+cd JobNetra
 
-
-
+# Tarik update terbaru dari branch main
+git pull origin main
 
 
