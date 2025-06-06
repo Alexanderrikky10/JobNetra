@@ -1,4 +1,3 @@
-import React from "react";
 import Label from "./Label";
 import Input from "./Input";
 
@@ -11,6 +10,7 @@ const GeneralInput = (props) => {
     classGeneral,
     classLabel,
     classInput,
+    field,
   } = props;
   return (
     <div className={classGeneral}>
@@ -22,6 +22,7 @@ const GeneralInput = (props) => {
         name={name}
         placeholder={placeholder}
         className={classInput}
+        field={field}
       />
     </div>
   );

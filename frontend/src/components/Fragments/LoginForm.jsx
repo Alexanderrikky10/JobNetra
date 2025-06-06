@@ -1,12 +1,26 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import GeneralInput from "../Elements/GeneralInput/GeneralInput";
 import { FaGoogle } from "react-icons/fa";
 import PasswordInput from "../Elements/PasswordInput/PasswordInput";
 import { DarkMode } from "../../context/DarkMode";
 import { Link } from "react-router-dom";
+import { Controller } from "react-hook-form";
+import { CircularProgress } from "@mui/material";
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const { isDarkMode } = useContext(DarkMode);
+  const {
+    handleSubmitLogin,
+    control,
+    errors,
+    reset,
+    isPendingLogin,
+    isSuccessLogin,
+    handleLogin,
+    isErrorLogin,
+    errorLogin,
+  } = props;
+  console.log(errorLogin);
   return (
     <div className="flex-1/2 py-6 rounded-lg flex flex-col items-start justify-center lg:px-20 md:px-12 px-12">
       {/* Logo */}
@@ -24,31 +38,64 @@ const LoginForm = () => {
       </h1>
 
       {/* Login Form */}
-      <form className="mb-5 w-full">
-        <GeneralInput
-          type="email"
+      <form className="mb-5 w-full" onSubmit={handleSubmitLogin(handleLogin)}>
+        {isErrorLogin && (
+          <p className="text-red-500 mb-2 text-sm">
+            {errorLogin?.response?.data?.message}
+          </p>
+        )}
+        <Controller
           name="email"
-          placeholder="your@email.com"
-          classGeneral="flex flex-col gap-1.5 mb-4"
-          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold text-sm`}
-          classInput={`${
-            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-          } border-2 border-gray-400 py-1.5 px-3 rounded-md text-sm`}
-        >
-          Email Address
-        </GeneralInput>
-
-        <PasswordInput
+          control={control}
+          render={({ field }) => (
+            <GeneralInput
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              classGeneral={`flex flex-col gap-1.5 ${
+                errors?.email ? "mb-0" : "mb-4"
+              }`}
+              classLabel={`${
+                isDarkMode ? "text-white" : ""
+              } font-semibold text-sm`}
+              classInput={`${
+                isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+              } border-2 border-gray-400 py-1.5 px-3 rounded-md text-sm`}
+              field={field}
+            >
+              Email Address
+            </GeneralInput>
+          )}
+        />
+        {errors?.email && (
+          <p className="text-red-500 mb-2 text-sm">{errors.email.message}</p>
+        )}
+        <Controller
           name="password"
-          placeholder="*********"
-          classGeneral="flex flex-col gap-1.5 mb-4"
-          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold text-sm`}
-          classInput={`${
-            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-          } w-full border-2 border-gray-400 py-1.5 px-3 rounded-md pr-10 text-sm`}
-        >
-          Password
-        </PasswordInput>
+          control={control}
+          render={({ field }) => (
+            <PasswordInput
+              name="password"
+              placeholder="*********"
+              classGeneral={`flex flex-col gap-1.5 ${
+                errors?.password ? "mb-0" : "mb-4"
+              }`}
+              classLabel={`${
+                isDarkMode ? "text-white" : ""
+              } font-semibold text-sm`}
+              classInput={`${
+                isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+              } w-full border-2 border-gray-400 py-1.5 px-3 rounded-md pr-10 text-sm`}
+              field={field}
+            >
+              Password
+            </PasswordInput>
+          )}
+        />
+
+        {errors?.password && (
+          <p className="text-red-500 mb-2 text-sm">{errors.password.message}</p>
+        )}
 
         <div className="flex justify-between mb-5">
           <GeneralInput
@@ -81,7 +128,11 @@ const LoginForm = () => {
           className="w-full py-2 bg-[var(--primary-color)] cursor-pointer rounded-lg text-white text-sm text-center font-semibold hover:bg-[var(--primary-hover)]"
           type="submit"
         >
-          Sign In
+          {isPendingLogin ? (
+            <CircularProgress size={20} color="inherit" />
+          ) : (
+            "Sign In"
+          )}
         </button>
       </form>
       <div className="w-full self-center flex items-center mb-5">

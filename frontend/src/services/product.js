@@ -1,9 +1,9 @@
-const API_CODE = import.meta.env.VITE_API_CODE;
+import { env } from "../env";
 
 export const getJobs = async (keywords, location, page, salary) => {
   try {
     const reqData = constructRequestData(keywords, location, page, salary);
-    const response = await fetch(`https://id.jooble.org/api/${API_CODE}`, {
+    const response = await fetch(`https://id.jooble.org/api/${env.API_CODE}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

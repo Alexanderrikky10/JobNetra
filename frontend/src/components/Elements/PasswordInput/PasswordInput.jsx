@@ -5,8 +5,15 @@ import { DarkMode } from "../../../context/DarkMode";
 
 const PasswordInput = (props) => {
   const { isDarkMode } = useContext(DarkMode);
-  const { name, placeholder, children, classGeneral, classLabel, classInput } =
-    props;
+  const {
+    name,
+    placeholder,
+    children,
+    classGeneral,
+    classLabel,
+    classInput,
+    field,
+  } = props;
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -24,6 +31,7 @@ const PasswordInput = (props) => {
           name={name}
           id={name}
           placeholder={placeholder}
+          {...(field && { ...field })}
         />
 
         <button

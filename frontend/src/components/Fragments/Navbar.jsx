@@ -1,12 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
 import { GiSuitcase } from "react-icons/gi";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const location = useLocation();
+  const { isAuthenticated, logout } = useAuth();
+
+  const navigate = useNavigate();
 
   // Toggle menu visibility
   const toggleMenu = () => {
@@ -82,12 +86,25 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Button */}
-      <Link
-        to="/login"
-        className="hidden sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"
-      >
-        Sign In
-      </Link>
+      {!isAuthenticated ? (
+        <Link
+          to="/login"
+          className="hidden sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"
+        >
+          Sign In
+        </Link>
+      ) : (
+        <button
+          type="button"
+          onClick={() => {
+            logout();
+            navigate("/login");
+          }}
+          className="hidden sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"
+        >
+          Sign Out
+        </button>
+      )}
 
       {/* Hamburger Icon (Mobile) */}
       <button
@@ -147,7 +164,7 @@ const Navbar = () => {
           About
         </Link>
         <Link
-          to="/signin"
+          to="/login"
           className="py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)] text-center"
           onClick={() => setMenuOpen(false)}
         >
