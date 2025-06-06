@@ -310,9 +310,9 @@ a:hover {
         </section>
 
         <section id="me">
-          <h2>Get Authenticated User (Me)</h2>
+          <h2>Get History</h2>
           <ul>
-            <li><strong>URL:</strong> <code>/me</code></li>
+            <li><strong>URL:</strong> <code>/history</code></li>
             <li>
               <strong>Method:</strong> <span class="method get">GET</span>
             </li>
