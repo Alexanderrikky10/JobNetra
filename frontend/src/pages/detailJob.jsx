@@ -5,9 +5,13 @@ import { FaArrowLeft } from "react-icons/fa";
 import JobCard from "../components/Fragments/JobCard";
 import { getJobs } from "../services/product";
 import Pagination from "../components/Fragments/Pagination";
+import { useAuth } from "../hooks/useAuth";
+import { useRouterReady } from "../hooks/useQueryReady";
 
 const DetailJobPage = () => {
   const navigate = useNavigate();
+  const isReady = useRouterReady();
+  const { isAuthenticated } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -38,22 +42,35 @@ const DetailJobPage = () => {
       }
     }
 
+    if (!isReady) {
+      return;
+    }
+
+    // Handle authentication
+    if (!isAuthenticated) {
+      navigate("/login");
+      return;
+    }
+
     const keywords = searchParams.get("keywords");
     const location = searchParams.get("location");
     const page = searchParams.get("page");
     const salary = searchParams.get("salary");
 
-    setCurrentPage(page);
-
-    if (!keywords || !location || !page) {
+    // Validate required parameters
+    if (!keywords?.trim() || !location?.trim() || !page?.trim()) {
       navigate("/");
       return;
     }
-    if (salary) {
+
+    // All checks passed, proceed with data fetching
+    setCurrentPage(page);
+
+    if (salary && selectComponent.current) {
       selectComponent.current.value = salary;
     }
     fetchData(keywords, location, page, salary);
-  }, [navigate, searchParams]);
+  }, [navigate, searchParams, isReady, isAuthenticated]);
 
   // useEffect(() => {
   //   try {

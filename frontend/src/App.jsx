@@ -6,7 +6,6 @@ import DetailJobPage from "./pages/detailJob";
 import HomePage from "./pages/home";
 import AboutPage from "./pages/about";
 import Tutorial from "./pages/tutorial";
-import { ProtectedRoute } from "./hooks/ProtectedRoute";
 import { AuthRoute } from "./hooks/AuthRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import RegisterPage from "./pages/register";
@@ -41,14 +40,7 @@ function App() {
                 </AuthRoute>
               }
             />
-            <Route
-              path="/jobs"
-              element={
-                <ProtectedRoute>
-                  <DetailJobPage />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/jobs" element={<DetailJobPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/tutorial" element={<Tutorial />} />
           </Routes>
