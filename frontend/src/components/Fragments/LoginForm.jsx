@@ -20,7 +20,6 @@ const LoginForm = (props) => {
     isErrorLogin,
     errorLogin,
   } = props;
-  console.log(errorLogin);
   return (
     <div className="flex-1/2 py-6 rounded-lg flex flex-col items-start justify-center lg:px-20 md:px-12 px-12">
       {/* Logo */}
@@ -113,20 +112,21 @@ const LoginForm = (props) => {
           </GeneralInput>
 
           {/* Forgot Password */}
-          <a
+          <Link
             className={` ${
               isDarkMode ? "text-white" : "text-[var(--primary-color)]"
             } font-semibold hover:underline text-sm`}
-            href="#"
+            to="/forgot-password"
           >
             Forgot Password?
-          </a>
+          </Link>
         </div>
 
         {/* Sign In */}
         <button
           className="w-full py-2 bg-[var(--primary-color)] cursor-pointer rounded-lg text-white text-sm text-center font-semibold hover:bg-[var(--primary-hover)]"
           type="submit"
+          disabled={isPendingLogin || isSuccessLogin}
         >
           {isPendingLogin ? (
             <CircularProgress size={20} color="inherit" />

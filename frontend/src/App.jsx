@@ -9,6 +9,9 @@ import Tutorial from "./pages/tutorial";
 import { AuthRoute } from "./hooks/AuthRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import RegisterPage from "./pages/register";
+import ForgotPassword from "./pages/forgotPassword/forgotPassword";
+import EmailConfirmation from "./pages/emailConfirmation";
+import ResetPassword from "./pages/resetPassword";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +43,24 @@ function App() {
                 </AuthRoute>
               }
             />
+            <Route
+              path="/forgot-password"
+              element={
+                <AuthRoute>
+                  <ForgotPassword />
+                </AuthRoute>
+              }
+            />
+
+            <Route
+              path="/email-success"
+              element={
+                <AuthRoute>
+                  <EmailConfirmation />
+                </AuthRoute>
+              }
+            />
+            <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/jobs" element={<DetailJobPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/tutorial" element={<Tutorial />} />

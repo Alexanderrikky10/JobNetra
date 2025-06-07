@@ -48,7 +48,9 @@ const useRegister = () => {
     mutationFn: registerReq,
     onError: (err) => {},
     onSuccess: (data) => {
-      navigate("/login");
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     },
   });
 

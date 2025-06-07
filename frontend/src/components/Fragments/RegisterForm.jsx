@@ -137,7 +137,7 @@ const RegisterForm = (props) => {
                 isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
               } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm`}
             >
-              Password
+              Password Confirmation
             </PasswordInput>
           )}
         />
@@ -175,8 +175,11 @@ const RegisterForm = (props) => {
         <button
           className="w-full py-2 bg-[var(--primary-color)] text-sm rounded-lg text-white text-center font-semibold hover:bg-[var(--primary-hover)]"
           type="submit"
+          disabled={isPendingRegister || isSuccessRegister}
         >
-          {isPendingRegister ? (
+          {isSuccessRegister ? (
+            "Register Successful"
+          ) : isPendingRegister ? (
             <CircularProgress size={20} color="inherit" />
           ) : (
             "Sign Up"

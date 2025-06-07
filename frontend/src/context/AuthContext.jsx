@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import authService from "../services/auth.service";
 
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
@@ -12,7 +13,8 @@ const AuthProvider = ({ children }) => {
     setSession({ token, user });
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await authService.logout();
     localStorage.removeItem("session");
     setSession({ token: "", user: {} });
   };

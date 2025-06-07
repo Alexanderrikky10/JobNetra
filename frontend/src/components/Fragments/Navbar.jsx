@@ -96,8 +96,8 @@ const Navbar = () => {
       ) : (
         <button
           type="button"
-          onClick={() => {
-            logout();
+          onClick={async () => {
+            await logout();
             navigate("/login");
           }}
           className="hidden sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"

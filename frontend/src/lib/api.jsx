@@ -1,7 +1,6 @@
 import axios from "axios";
 import { env } from "../env";
 import { getToken } from "../hooks/authToken";
-import { useAuth } from "../hooks/useAuth";
 
 const api = axios.create({
   baseURL: env.BACKEND_API_URL,

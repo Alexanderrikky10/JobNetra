@@ -9,6 +9,8 @@ const authService = {
     return api.post("/login", payload);
   },
 
+  logout: () => api.delete("/logout"),
+
   register: (payload) => {
     payload = {
       ...payload,
@@ -16,6 +18,10 @@ const authService = {
     };
     return api.post("/register", payload);
   },
+
+  forgotPassword: (payload) => api.post("/resetPassword", payload),
+
+  resetPassword: (payload) => api.post("/NewPassword", payload),
 };
 
 export default authService;
