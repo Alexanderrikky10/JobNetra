@@ -11,13 +11,15 @@ import { useRouterReady } from "../hooks/useQueryReady";
 const DetailJobPage = () => {
   const navigate = useNavigate();
   const isReady = useRouterReady();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoadingAuthentication } = useAuth();
   const [searchParams, setSearchParams] = useSearchParams();
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
   const [totalJob, setTotalJob] = useState(0);
   const [currentPage, setCurrentPage] = useState("1");
+
+  console.log(isAuthenticated, isLoadingAuthentication);
 
   const selectComponent = useRef(null);
 
@@ -47,7 +49,7 @@ const DetailJobPage = () => {
     }
 
     // Handle authentication
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !isLoadingAuthentication) {
       navigate("/login");
       return;
     }
@@ -70,7 +72,13 @@ const DetailJobPage = () => {
       selectComponent.current.value = salary;
     }
     fetchData(keywords, location, page, salary);
-  }, [navigate, searchParams, isReady, isAuthenticated]);
+  }, [
+    navigate,
+    searchParams,
+    isReady,
+    isAuthenticated,
+    isLoadingAuthentication,
+  ]);
 
   // useEffect(() => {
   //   try {

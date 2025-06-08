@@ -3,10 +3,9 @@ import authService from "../services/auth.service";
 
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
-  const [session, setSession] = useState({
-    token: "",
-    user: {},
-  });
+  const [session, setSession] = useState(null);
+
+  console.log(session);
 
   const login = ({ token, user }) => {
     localStorage.setItem("session", JSON.stringify({ token, user }));
@@ -16,18 +15,20 @@ const AuthProvider = ({ children }) => {
   const logout = async () => {
     await authService.logout();
     localStorage.removeItem("session");
-    setSession({ token: "", user: {} });
+    setSession(null);
   };
 
   useEffect(() => {
-    const session = localStorage.getItem("session");
-    if (session) {
+    const local = localStorage.getItem("session");
+    if (local) {
       try {
-        const { token, user } = JSON.parse(session);
+        const { token, user } = JSON.parse(local);
         setSession({ token, user });
-      } catch (err) {
+      } catch {
         logout();
       }
+    } else {
+      setSession({ token: "", user: {} });
     }
   }, []);
 
@@ -37,7 +38,8 @@ const AuthProvider = ({ children }) => {
         session,
         login,
         logout,
-        isAuthenticated: !!session.token,
+        isAuthenticated: session?.token?.length > 0,
+        isLoadingAuthentication: session === null,
       }}
     >
       {children}

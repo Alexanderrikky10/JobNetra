@@ -17,7 +17,7 @@ const createSkill = (label) => ({
 
 const InputSkill = () => {
   const navigate = useNavigate();
-  // const { isAuthenticated } = useAuth();
+  const { isAuthenticated, isLoadingAuthentication } = useAuth();
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [skills, setSkills] = useState([]);
@@ -26,12 +26,12 @@ const InputSkill = () => {
   const [isPending, setIsPending] = useState(false);
 
   // AUTH BUG
-  // useEffect(() => {
-  //   if (!isAuthenticated) {
-  //     navigate("/login");
-  //     return;
-  //   }
-  // }, [navigate, isAuthenticated]);
+  useEffect(() => {
+    if (!isAuthenticated && !isLoadingAuthentication) {
+      navigate("/login");
+      return;
+    }
+  }, [navigate, isAuthenticated, isLoadingAuthentication]);
 
   const handleKeyDown = (event) => {
     if (!inputValue) return;
