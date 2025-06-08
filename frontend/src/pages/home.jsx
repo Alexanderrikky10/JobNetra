@@ -20,18 +20,18 @@ const HomePage = () => {
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row gap-1 w-full">
-            <button
-              className="cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-[var(--primary-color)] text-white font-semibold rounded-lg hover:bg-[var(--primary-hover)]"
-              type="button"
+            <Link
+              className="cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-[var(--primary-color)] text-white font-semibold rounded-lg hover:bg-[var(--primary-hover)] text-center"
+              to="/skills"
             >
               Try our powerful Machine Learning
-            </button>
-            <button
-              className="cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-white text-[var(--primary-color)] border border-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--primary-color)] hover:text-white"
-              type="button"
+            </Link>
+            <Link
+              className="text-center cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-white text-[var(--primary-color)] border border-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--primary-color)] hover:text-white"
+              to="/tutorial"
             >
               Learn More
-            </button>
+            </Link>
           </div>
         </div>
         <div className="flex-auto hidden md:block">
@@ -119,7 +119,7 @@ const HomePage = () => {
           JobNetra
         </p>
         <Link
-          to="/"
+          to="/skills"
           className="mt-5 py-3 px-7 rounded-full bg-[var(--secondary-color)] text-white hover:bg-[var(--secondary-hover)]"
         >
           Get Started Now

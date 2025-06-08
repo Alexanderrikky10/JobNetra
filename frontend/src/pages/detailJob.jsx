@@ -7,6 +7,7 @@ import { getJobs } from "../services/product";
 import Pagination from "../components/Fragments/Pagination";
 import { useAuth } from "../hooks/useAuth";
 import { useRouterReady } from "../hooks/useQueryReady";
+import { set } from "react-hook-form";
 
 const DetailJobPage = () => {
   const navigate = useNavigate();
@@ -18,6 +19,7 @@ const DetailJobPage = () => {
   const [isError, setIsError] = useState("");
   const [totalJob, setTotalJob] = useState(0);
   const [currentPage, setCurrentPage] = useState("1");
+  const [keyword, setKeyword] = useState("");
 
   console.log(isAuthenticated, isLoadingAuthentication);
 
@@ -65,6 +67,7 @@ const DetailJobPage = () => {
       return;
     }
 
+    setKeyword(keywords);
     // All checks passed, proceed with data fetching
     setCurrentPage(page);
 
@@ -108,7 +111,17 @@ const DetailJobPage = () => {
       <section className="min-h-11/12 px-10 md:px-20 pt-10 flex flex-col items-center justify-between">
         <div className="w-full flex flex-col">
           <div className="w-full flex justify-between">
-            <h2 className="text-3xl font-semibold">Recommended Jobs</h2>
+            <div className="flex flex-col gap-3">
+              <h2 className="text-3xl font-semibold">Recommended Jobs</h2>
+              {keyword !== "" && (
+                <p className="text-lg">
+                  Showing results for{" "}
+                  <span className="text-[var(--secondary-color)]">
+                    {keyword}
+                  </span>
+                </p>
+              )}
+            </div>
             <Link
               to="/"
               className="flex gap-2 items-center font-bold text-[var(--primary-color)] hover:text-[var(--primary-hover)]"

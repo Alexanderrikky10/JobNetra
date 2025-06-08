@@ -21,12 +21,12 @@ const AboutPage = () => {
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row gap-1 w-full">
-            <button
-              className="cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-[var(--primary-color)] text-white font-semibold rounded-lg hover:bg-[var(--primary-hover)]"
-              type="button"
+            <Link
+              className="text-center cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-[var(--primary-color)] text-white font-semibold rounded-lg hover:bg-[var(--primary-hover)]"
+              to="/tutorial"
             >
               Learn More
-            </button>
+            </Link>
             <button
               className="cursor-pointer shadow-sm shadow-black/20 flex-auto py-2 px-4 bg-white text-[var(--primary-color)] border border-[var(--primary-color)] font-semibold rounded-lg hover:bg-[var(--primary-color)] hover:text-white"
               type="button"

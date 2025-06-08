@@ -8,7 +8,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const location = useLocation();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, isLoadingAuthentication, logout } = useAuth();
 
   const navigate = useNavigate();
 
@@ -56,6 +56,17 @@ const Navbar = () => {
         >
           Home
         </Link>
+
+        <Link
+          to="/skills"
+          className={`${
+            location.pathname === "/skills"
+              ? "text-[var(--primary-hover)] after:scale-x-100"
+              : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+          } relative font-bold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+        >
+          Skills
+        </Link>
         {/* <Link
           to="/jobs"
           className="relative text-[var(--text-nav)] font-bold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
@@ -86,7 +97,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Button */}
-      {!isAuthenticated ? (
+      {!isAuthenticated && !isLoadingAuthentication ? (
         <Link
           to="/login"
           className="hidden sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"
@@ -133,6 +144,18 @@ const Navbar = () => {
         >
           Home
         </Link>
+
+        <Link
+          to="/skills"
+          className={`${
+            location.pathname === "/skills"
+              ? "text-[var(--primary-hover)] after:scale-x-100"
+              : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+          } text-center relative font-semibold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          onClick={() => setMenuOpen(false)}
+        >
+          Skills
+        </Link>
         {/* <Link
           to="/jobs"
           className="text-center relative text-[var(--text-nav)] font-semibold text-lg hover:text-[var(--primary-hover)] after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 hover:after:scale-x-100 origin-center"
@@ -163,13 +186,27 @@ const Navbar = () => {
         >
           About
         </Link>
-        <Link
-          to="/login"
-          className="py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)] text-center"
-          onClick={() => setMenuOpen(false)}
-        >
-          Sign In
-        </Link>
+        {!isAuthenticated && !isLoadingAuthentication ? (
+          <Link
+            to="/login"
+            className="py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)] text-center"
+            onClick={() => setMenuOpen(false)}
+          >
+            Sign In
+          </Link>
+        ) : (
+          <button
+            type="button"
+            onClick={async () => {
+              await logout();
+              navigate("/login");
+              setMenuOpen(false);
+            }}
+            className="py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)] text-center"
+          >
+            Sign Out
+          </button>
+        )}
       </div>
     </nav>
   );
