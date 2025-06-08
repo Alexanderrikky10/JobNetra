@@ -174,7 +174,7 @@ a:hover {
           <li><a href="#register">Register</a></li>
           <li><a href="#login">Login</a></li>
           <li><a href="#logout">Logout</a></li>
-          <li><a href="#me">Get Authenticated User (Me)</a></li>
+          <li><a href="#history">histori</a></li>
           <li><a href="#reset-password">Reset Password (Email Link)</a></li>
           <li>
             <a href="#new-password">Set New Password (from Email Link)</a>
@@ -310,9 +310,9 @@ a:hover {
         </section>
 
         <section id="me">
-          <h2>Get Authenticated User (Me)</h2>
+          <h2>Get History</h2>
           <ul>
-            <li><strong>URL:</strong> <code>/me</code></li>
+            <li><strong>URL:</strong> <code>/history</code></li>
             <li>
               <strong>Method:</strong> <span class="method get">GET</span>
             </li>
@@ -324,16 +324,17 @@ a:hover {
               <strong>Response:</strong>
               <pre><code class="language-json">
                 {
-                    "message": "User retrieved successfully",
-                    "data": {
-                        "id": 2,
-                        "name": "John Doe",
-                        "email": "admin@email.com",
-                        "email_verified_at": null,
-                        "created_at": "2025-05-29T14:23:05.000000Z",
-                        "updated_at": "2025-06-05T09:15:51.000000Z"
-                    }
-                }
+                  "message": "Latest log retrieved successfully",
+                  "data": {
+                      "id": 8,
+                      "user_id": 2,
+                      "input_skills": "aaabbbccc, ay,am , sapi, kambing, java script",
+                      "result": "{\"input_skills\": \"aaabbbccc, ay,am , sapi, kambing, java script\", \"top_predictions\": [{\"label\": \"Registered Nurse\", \"probability\": 0.007284968625754118}, {\"label\": \"Nurse Manager\", \"probability\": 0.006996749434620142}, {\"label\": \"Substance Abuse Counselor\", \"probability\": 0.0069910516031086445}]}",
+                      "timestamp": "2025-06-05 15:41:21",
+                      "created_at": "2025-06-05T15:41:21.000000Z",
+                      "updated_at": "2025-06-05T15:41:21.000000Z"
+                  }
+              }
       </code></pre>
             </li>
           </ul>
