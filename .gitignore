@@ -1,0 +1,5 @@
+# Ignore environment files
+**/.env
+
+# Ignore ML virtual environment folder
+ML/.venv/
