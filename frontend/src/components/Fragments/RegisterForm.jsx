@@ -4,8 +4,22 @@ import { FaGoogle } from "react-icons/fa";
 import PasswordInput from "../Elements/PasswordInput/PasswordInput";
 import { DarkMode } from "../../context/DarkMode";
 import { Link } from "react-router-dom";
+import { Controller } from "react-hook-form";
+import { CircularProgress } from "@mui/material";
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
+  const {
+    handleSubmitRegister,
+    control,
+    errors,
+    reset,
+    isPendingRegister,
+    isSuccessRegister,
+    handleRegister,
+    isErrorRegister,
+    errorRegister,
+  } = props;
+  console.log(errorRegister);
   const { isDarkMode } = useContext(DarkMode);
   return (
     <div className="flex-1/2 py-6 rounded-lg flex flex-col items-start lg:px-20 md:px-12 px-12">
@@ -16,76 +30,160 @@ const RegisterForm = () => {
       >
         Welcome
       </h1>
-      <form className="mb-5 w-full">
-        <GeneralInput
-          type="text"
-          name="fullname"
-          placeholder="John Doe"
-          classGeneral="flex flex-col gap-1.5 mb-4"
-          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold text-sm`}
-          classInput={`${
-            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-          } border-2 border-gray-400 py-2 px-3 rounded-md text-sm`}
-        >
-          Full Name
-        </GeneralInput>
-        <GeneralInput
-          type="email"
+      <form
+        className="mb-5 w-full"
+        onSubmit={handleSubmitRegister(handleRegister)}
+      >
+        {isErrorRegister && (
+          <p className="text-red-500 mb-2 text-sm">
+            {errorRegister?.response?.data?.message}
+          </p>
+        )}
+        <Controller
+          name="name"
+          control={control}
+          render={({ field }) => (
+            <GeneralInput
+              type="text"
+              name="name"
+              placeholder="John Doe"
+              field={field}
+              classGeneral={`flex flex-col gap-1.5 ${
+                errors?.name ? "mb-0" : "mb-4"
+              }`}
+              classLabel={`${
+                isDarkMode ? "text-white" : ""
+              } font-semibold text-sm`}
+              classInput={`${
+                isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+              } border-2 border-gray-400 py-2 px-3 rounded-md text-sm`}
+            >
+              Full Name
+            </GeneralInput>
+          )}
+        />
+        {errors?.name && (
+          <p className="text-red-500 mb-2 text-sm">{errors.name.message}</p>
+        )}
+
+        <Controller
           name="email"
-          placeholder="your@email.com"
-          classGeneral="flex flex-col gap-1.5 mb-4"
-          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold text-sm`}
-          classInput={`${
-            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-          } border-2 border-gray-400 py-2 px-3 rounded-md text-sm`}
-        >
-          Email Address
-        </GeneralInput>
+          control={control}
+          render={({ field }) => (
+            <GeneralInput
+              type="email"
+              name="email"
+              field={field}
+              placeholder="your@email.com"
+              classGeneral={`flex flex-col gap-1.5 ${
+                errors?.email ? "mb-0" : "mb-4"
+              }`}
+              classLabel={`${
+                isDarkMode ? "text-white" : ""
+              } font-semibold text-sm`}
+              classInput={`${
+                isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+              } border-2 border-gray-400 py-2 px-3 rounded-md text-sm`}
+            >
+              Email Address
+            </GeneralInput>
+          )}
+        />
+        {errors?.email && (
+          <p className="text-red-500 mb-2 text-sm">{errors.email.message}</p>
+        )}
 
-        <PasswordInput
+        <Controller
           name="password"
-          placeholder="*********"
-          classGeneral="flex flex-col gap-1.5 mb-4"
-          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold text-sm`}
-          classInput={`${
-            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-          } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm`}
-        >
-          Password
-        </PasswordInput>
+          control={control}
+          render={({ field }) => (
+            <PasswordInput
+              name="password"
+              placeholder="*********"
+              field={field}
+              classGeneral={`flex flex-col gap-1.5 ${
+                errors?.password ? "mb-0" : "mb-4"
+              }`}
+              classLabel={`${
+                isDarkMode ? "text-white" : ""
+              } font-semibold text-sm`}
+              classInput={`${
+                isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+              } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm`}
+            >
+              Password
+            </PasswordInput>
+          )}
+        />
+        {errors?.password && (
+          <p className="text-red-500 mb-2 text-sm">{errors.password.message}</p>
+        )}
 
-        <PasswordInput
-          name="confirmPassword"
-          placeholder="*********"
-          classGeneral="flex flex-col gap-1.5 mb-4"
-          classLabel={`${isDarkMode ? "text-white" : ""} font-semibold text-sm`}
-          classInput={`${
-            isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-          } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm`}
-        >
-          Confirm Password
-        </PasswordInput>
+        <Controller
+          name="password_confirmation"
+          control={control}
+          render={({ field }) => (
+            <PasswordInput
+              name="password_confirmation"
+              placeholder="*********"
+              field={field}
+              classGeneral={`flex flex-col gap-1.5 ${
+                errors?.password_confirmation ? "mb-0" : "mb-4"
+              }`}
+              classLabel={`${
+                isDarkMode ? "text-white" : ""
+              } font-semibold text-sm`}
+              classInput={`${
+                isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
+              } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm`}
+            >
+              Password Confirmation
+            </PasswordInput>
+          )}
+        />
+        {errors?.password_confirmation && (
+          <p className="text-red-500 mb-2 text-sm">
+            {errors.password_confirmation.message}
+          </p>
+        )}
 
         <div className="mb-5 w-fit">
-          <GeneralInput
-            type="checkbox"
-            name="termsconditions"
-            classGeneral="flex justify-center items-center gap-2 group"
-            classLabel={`${
-              isDarkMode
-                ? "text-white hover:text-[var(--dark-hover)] group-hover:text-[var(--dark-hover)]"
-                : "text-[var(--text-secondary)] hover:text-[var(--primary-color)] group-hover:text-[var(--primary-color)]"
-            } order-1 font-medium text-sm`}
-            classInput=""
-          >
-            I agree to the Terms of Service and Privacy Policy
-          </GeneralInput>
+          <Controller
+            name="terms"
+            control={control}
+            render={({ field }) => (
+              <GeneralInput
+                type="checkbox"
+                name="terms"
+                field={field}
+                classGeneral="flex justify-center items-center gap-2 group"
+                classLabel={`${
+                  isDarkMode
+                    ? "text-white hover:text-[var(--dark-hover)] group-hover:text-[var(--dark-hover)]"
+                    : "text-[var(--text-secondary)] hover:text-[var(--primary-color)] group-hover:text-[var(--primary-color)]"
+                } order-1 font-medium text-sm`}
+                classInput=""
+              >
+                I agree to the Terms of Service and Privacy Policy
+              </GeneralInput>
+            )}
+          />
+          {errors?.terms && (
+            <p className="text-red-500 mb-2 text-sm">{errors.terms.message}</p>
+          )}
         </div>
         <button
           className="w-full py-2 bg-[var(--primary-color)] text-sm rounded-lg text-white text-center font-semibold hover:bg-[var(--primary-hover)]"
           type="submit"
+          disabled={isPendingRegister || isSuccessRegister}
         >
-          Sign Up
+          {isSuccessRegister ? (
+            "Register Successful"
+          ) : isPendingRegister ? (
+            <CircularProgress size={20} color="inherit" />
+          ) : (
+            "Sign Up"
+          )}
         </button>
       </form>
       <div className="w-full self-center flex items-center mb-5 text-sm">

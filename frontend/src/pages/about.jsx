@@ -99,7 +99,7 @@ const AboutPage = () => {
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 py-5">
             <TeamCard
               name="Alexander Rikky"
-              image="/images/team/avatar.png"
+              image="/images/team/rikky.jpg"
               role="Team Leader"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, eligendi?"
             />
@@ -111,7 +111,7 @@ const AboutPage = () => {
             />
             <TeamCard
               name="Kevin Chaily"
-              image="/images/team/avatar.png"
+              image="/images/team/KevinC.jpg"
               role="Front-end and Back-end Developer"
               description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, eligendi?"
             />

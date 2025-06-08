@@ -13,6 +13,8 @@ const AuthLayout = (props) => {
     <div className="flex w-full bg-white rounded-xl h-full justify-center md:flex-row flex-col-reverse">
       {pathname === "/login" && children}
       {pathname === "/register" && children}
+      {pathname === "/forgot-password" && children}
+      {pathname === "/reset-password" && children}
       <div className="lg:w-full w-2/3 bg-zinc-300 self-center rounded-xl flex-1/2 my-auto">
         <img
           src="images/login-register.jpg"

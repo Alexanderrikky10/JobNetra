@@ -1,7 +1,7 @@
 import React from "react";
 
 const Input = (props) => {
-  const { type, name, placeholder, className } = props;
+  const { type, name, placeholder, className, field } = props;
   return (
     <input
       type={type}
@@ -9,6 +9,7 @@ const Input = (props) => {
       id={name}
       placeholder={placeholder}
       className={className}
+      {...(field && { ...field })}
     />
   );
 };
