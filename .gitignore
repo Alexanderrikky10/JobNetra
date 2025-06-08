@@ -1,5 +1,0 @@
-# Ignore environment files
-**/.env
-
-# Ignore ML virtual environment folder
-capstone_API_flask/.venv/
