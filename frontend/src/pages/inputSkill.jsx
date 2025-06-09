@@ -23,15 +23,41 @@ const InputSkill = () => {
   const [inputValue, setInputValue] = useState("");
   const [skills, setSkills] = useState([]);
   const [selectErrorText, setSelectErrorText] = useState("");
+  const [selectErrorHistoryText, setSelectErrorHistoryText] = useState("");
   const [multiErrorText, setMultiErrorText] = useState("");
   const [isPending, setIsPending] = useState(false);
   const [phrase, setPhrase] = useState("");
+  const [history, setHistory] = useState("");
+  const [historyLocation, setHistoryLocation] = useState(null);
+
+  console.log(history);
+
   const loadingScreenTime = (ms) =>
     new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
     const randomIndex = Math.floor(Math.random() * loadingPhrases.length);
     setPhrase(loadingPhrases[randomIndex]);
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      const result = await api
+        .get("/history")
+        .then((response) => {
+          const decoded = JSON.parse(response.data.data.result);
+          const predictions = decoded.top_predictions.map((job) => job.label);
+          return predictions.join(", ");
+        })
+        .catch((error) => console.error(error));
+      return result;
+    }
+
+    fetchData().then((result) => {
+      if (result !== undefined) {
+        setHistory(result);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -109,6 +135,34 @@ const InputSkill = () => {
     }
   };
 
+  const handleSubmitHistory = async (event) => {
+    event.preventDefault();
+
+    const isValid = validateFormHistory();
+
+    if (isValid && historyLocation) {
+      setIsPending(true);
+      try {
+        //Lokasi juga disiapin
+        const location = historyLocation.value;
+
+        const queryParams = new URLSearchParams();
+        if (history) queryParams.set("keywords", history);
+        if (location) queryParams.set("location", location);
+        queryParams.set("page", 1);
+
+        console.log("queryParams: " + queryParams);
+
+        await loadingScreenTime(1000);
+        navigate(`/jobs?${queryParams.toString()}`);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setIsPending(false);
+      }
+    }
+  };
+
   const handleChange = (newValue) => setSkills(newValue);
 
   const handleReset = () => {
@@ -135,6 +189,11 @@ const InputSkill = () => {
     setSelectErrorText("");
   };
 
+  const handleChangeLocationHistory = (selectedOption) => {
+    setHistoryLocation(selectedOption);
+    setSelectErrorHistoryText("");
+  };
+
   const validateForm = () => {
     //Clear error
     setMultiErrorText("");
@@ -156,10 +215,25 @@ const InputSkill = () => {
     return isValid;
   };
 
+  const validateFormHistory = () => {
+    //Clear error
+    setSelectErrorHistoryText("");
+
+    let isValid = true;
+
+    //Validasi lokasi
+    if (historyLocation === null) {
+      setSelectErrorHistoryText("Pick a location first.");
+      isValid = false;
+    }
+
+    return isValid;
+  };
+
   return (
     <NavLayout>
       {!isPending ? (
-        <div className="max-h-dvh">
+        <div className="">
           <section className="flex flex-col items-center justify-center mt-4 text-center">
             <h1 className="text-3xl font-bold">Tell us about your skills</h1>
             <p className="max-w-md">
@@ -168,7 +242,7 @@ const InputSkill = () => {
             </p>
           </section>
 
-          <div className="flex justify-center ">
+          <div className="flex flex-col items-center justify-center">
             <form
               className="bg-white border-1 border-gray-400 m-8 lg:w-1/2 p-6 rounded-md"
               onSubmit={handleSubmit}
@@ -221,7 +295,7 @@ const InputSkill = () => {
                     {isPending ? (
                       <CircularProgress size={20} color="inherit" />
                     ) : (
-                      "Find Matching Jobs"
+                      "Predict Matching Jobs"
                     )}
                   </p>
                 </button>
@@ -235,9 +309,56 @@ const InputSkill = () => {
               </div>
             </form>
           </div>
+          {history !== "" && (
+            <section className="flex flex-col items-center justify-center mt-4 text-center mx-auto">
+              <hr className="w-10/12 mb-7 text-gray-400" />
+              <h3 className="text-[var(--text-secondary)] text-3xl font-semibold mb-4">
+                History
+              </h3>
+              <div className="bg-white border-1 border-gray-400 mx-8 lg:w-1/2 p-6 rounded-md">
+                <form
+                  onSubmit={handleSubmitHistory}
+                  className="flex flex-col justify-center items-start"
+                >
+                  <h4 className="text-lg text-[var(--text-secondary)] text-start">
+                    Your latest prediction:
+                  </h4>
+                  <p className="text-[var(--secondary-color)] text-start">
+                    {history}
+                  </p>
+                  <div className="w-full text-start">
+                    <label className="block mb-2 font-semibold after:content-['*'] after:text-red-500 mt-4">
+                      Preferred Location{" "}
+                    </label>
+                    <SelectInput
+                      handleChange={handleChangeLocationHistory}
+                      isMulti={false}
+                      error={selectErrorHistoryText !== ""}
+                      value={historyLocation}
+                    />
+                    {selectErrorHistoryText != "" && (
+                      <p className="text-red-500 mt-2">{selectErrorHistoryText}</p>
+                    )}
+                  </div>
+                  <button
+                    type="submit"
+                    className="mt-4 w-full bg-[var(--primary-color)] grow-2 py-2 rounded-md hover:bg-[var(--primary-hover)] cursor-pointer"
+                  >
+                    <p className="text-white font-semibold" type="submit">
+                      {isPending ? (
+                        <CircularProgress size={20} color="inherit" />
+                      ) : (
+                        "Find Jobs"
+                      )}
+                    </p>
+                  </button>
+                </form>
+              </div>
+            </section>
+          )}
         </div>
       ) : (
-        <div className="h-screen flex justify-center items-center flex-col gap-10">
+        <div className="min-h-[80vh] flex justify-center items-center flex-col gap-10">
           <div className="loader mx-auto my-10"></div>
           <h1 className="text-3xl text-[var(--primary-color)] font-bold text-center">
             {phrase}
