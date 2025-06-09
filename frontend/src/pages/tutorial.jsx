@@ -11,7 +11,7 @@ const Tutorial = () => {
   return (
     <>
       <NavLayout>
-        <div className="flex flex-col justify-center px-46">
+        <div className="flex flex-col justify-center px-10 md:px-46">
           {/* Header */}
           <section className="w-full flex flex-col items-center pt-8 pb-10 gap-2">
             <h2 className="text-3xl font-bold">
