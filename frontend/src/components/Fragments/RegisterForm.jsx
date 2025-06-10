@@ -22,11 +22,11 @@ const RegisterForm = (props) => {
   console.log(errorRegister);
   const { isDarkMode } = useContext(DarkMode);
   return (
-    <div className="flex-1/2 py-6 rounded-lg flex flex-col items-start lg:px-20 md:px-12 px-12">
+    <div className="flex-1/2 rounded-lg flex flex-col items-start justify-center">
       <h1
         className={`${
           isDarkMode ? "text-white" : ""
-        } text-xl text-center font-bold mb-4 w-full`}
+        } text-xl text-center font-bold mb-5 w-full 2xl:text-3xl`}
       >
         Welcome
       </h1>
@@ -35,7 +35,7 @@ const RegisterForm = (props) => {
         onSubmit={handleSubmitRegister(handleRegister)}
       >
         {isErrorRegister && (
-          <p className="text-red-500 mb-2 text-sm">
+          <p className="text-red-500 mb-2 text-sm lg:text-md 2xl:text-xl">
             {errorRegister?.response?.data?.message}
           </p>
         )}
@@ -53,17 +53,19 @@ const RegisterForm = (props) => {
               }`}
               classLabel={`${
                 isDarkMode ? "text-white" : ""
-              } font-semibold text-sm`}
+              } font-semibold text-sm lg:text-md 2xl:text-xl`}
               classInput={`${
                 isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-              } border-2 border-gray-400 py-2 px-3 rounded-md text-sm`}
+              } border-2 border-gray-400 py-2 px-3 rounded-md text-sm lg:text-md 2xl:text-xl`}
             >
               Full Name
             </GeneralInput>
           )}
         />
         {errors?.name && (
-          <p className="text-red-500 mb-2 text-sm">{errors.name.message}</p>
+          <p className="text-red-500 mb-2 text-sm lg:text-md 2xl:text-xl">
+            {errors.name.message}
+          </p>
         )}
 
         <Controller
@@ -80,10 +82,10 @@ const RegisterForm = (props) => {
               }`}
               classLabel={`${
                 isDarkMode ? "text-white" : ""
-              } font-semibold text-sm`}
+              } font-semibold text-sm lg:text-md 2xl:text-xl`}
               classInput={`${
                 isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-              } border-2 border-gray-400 py-2 px-3 rounded-md text-sm`}
+              } border-2 border-gray-400 py-2 px-3 rounded-md text-sm lg:text-md 2xl:text-xl`}
             >
               Email Address
             </GeneralInput>
@@ -106,17 +108,19 @@ const RegisterForm = (props) => {
               }`}
               classLabel={`${
                 isDarkMode ? "text-white" : ""
-              } font-semibold text-sm`}
+              } font-semibold text-sm lg:text-md 2xl:text-xl`}
               classInput={`${
                 isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-              } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm`}
+              } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm lg:text-md 2xl:text-xl`}
             >
               Password
             </PasswordInput>
           )}
         />
         {errors?.password && (
-          <p className="text-red-500 mb-2 text-sm">{errors.password.message}</p>
+          <p className="text-red-500 mb-2 text-sm lg:text-md 2xl:text-xl">
+            {errors.password.message}
+          </p>
         )}
 
         <Controller
@@ -132,17 +136,17 @@ const RegisterForm = (props) => {
               }`}
               classLabel={`${
                 isDarkMode ? "text-white" : ""
-              } font-semibold text-sm`}
+              } font-semibold text-sm lg:text-md 2xl:text-xl`}
               classInput={`${
                 isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-              } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm`}
+              } w-full border-2 border-gray-400 py-2 px-3 rounded-md pr-10 text-sm lg:text-md 2xl:text-xl`}
             >
               Password Confirmation
             </PasswordInput>
           )}
         />
         {errors?.password_confirmation && (
-          <p className="text-red-500 mb-2 text-sm">
+          <p className="text-red-500 mb-2 text-sm lg:text-md 2xl:text-xl">
             {errors.password_confirmation.message}
           </p>
         )}
@@ -161,7 +165,7 @@ const RegisterForm = (props) => {
                   isDarkMode
                     ? "text-white hover:text-[var(--dark-hover)] group-hover:text-[var(--dark-hover)]"
                     : "text-[var(--text-secondary)] hover:text-[var(--primary-color)] group-hover:text-[var(--primary-color)]"
-                } order-1 font-medium text-sm`}
+                } order-1 font-medium text-sm lg:text-md 2xl:text-xl`}
                 classInput=""
               >
                 I agree to the Terms of Service and Privacy Policy
@@ -169,11 +173,13 @@ const RegisterForm = (props) => {
             )}
           />
           {errors?.terms && (
-            <p className="text-red-500 mb-2 text-sm">{errors.terms.message}</p>
+            <p className="text-red-500 mb-2 text-sm lg:text-md 2xl:text-xl">
+              {errors.terms.message}
+            </p>
           )}
         </div>
         <button
-          className="w-full py-2 bg-[var(--primary-color)] text-sm rounded-lg text-white text-center font-semibold hover:bg-[var(--primary-hover)]"
+          className="w-full py-2 bg-[var(--primary-color)] text-sm lg:text-md 2xl:text-xl rounded-lg text-white text-center font-semibold hover:bg-[var(--primary-hover)]"
           type="submit"
           disabled={isPendingRegister || isSuccessRegister}
         >
@@ -186,13 +192,13 @@ const RegisterForm = (props) => {
           )}
         </button>
       </form>
-      <div className="w-full self-center flex items-center mb-5 text-sm">
+      {/* <div className="w-full self-center flex items-center mb-5 text-sm">
         <hr className=" flex-grow border-gray-500/30" />
         <p className="mx-2.5 text-[var(--text-secondary)]">Or continue with</p>
         <hr className="flex-grow border-gray-500/30" />
-      </div>
+      </div> */}
 
-      <button
+      {/* <button
         type="button"
         className={`w-full border-2 text-sm border-gray-400/20 py-2 rounded-lg flex items-center justify-center gap-3 hover:border-gray-400 hover:bg-gray-400 transition mb-5`}
       >
@@ -204,10 +210,10 @@ const RegisterForm = (props) => {
         >
           Sign up with Google
         </span>
-      </button>
+      </button> */}
 
       {/* Login */}
-      <p className="text-sm">
+      <p className="text-sm lg:text-md 2xl:text-xl">
         Already have an account?{" "}
         <Link
           to="/login"

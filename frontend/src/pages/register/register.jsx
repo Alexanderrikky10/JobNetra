@@ -15,7 +15,7 @@ const RegisterPage = () => {
     errorRegister,
   } = useRegister();
   return (
-    <div className="absolute inset-4 border-4 border-zinc-300 rounded-2xl flex items-center h-max">
+    <div className="rounded-2xl py-4 flex items-center min-h-160 xl:min-h-full h-lvh">
       <AuthLayout>
         <RegisterForm
           handleRegister={handleRegister}

@@ -15,7 +15,7 @@ const LoginPage = () => {
     errorLogin,
   } = useLogin();
   return (
-    <div className="absolute inset-4 border-4 border-zinc-300 rounded-2xl flex items-center md:h-auto h-max ">
+    <div className="rounded-2xl py-4 flex items-center h-lvh min-h-120">
       <AuthLayout>
         <LoginForm
           handleSubmitLogin={handleSubmitLogin}

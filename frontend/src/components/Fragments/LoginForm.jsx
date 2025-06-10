@@ -21,25 +21,24 @@ const LoginForm = (props) => {
     errorLogin,
   } = props;
   return (
-    <div className="flex-1/2 py-6 rounded-lg flex flex-col items-start justify-center lg:px-20 md:px-12 px-12">
+    // <div className="flex-1/2 py-6 rounded-lg flex flex-col items-start justify-center lg:px-20 md:px-12 px-12">
+    <div className="flex-1/2 rounded-lg flex flex-col items-start justify-center">
       {/* Logo */}
       {/* <div className="mb-7">
         <p>JobNetra</p>
       </div> */}
-
       {/* Welcome Back */}
       <h1
         className={`${
           isDarkMode ? "text-white" : ""
-        } text-xl text-center font-bold mb-5 w-full`}
+        } text-xl text-center font-bold mb-5 w-full 2xl:text-3xl`}
       >
         Welcome Back
       </h1>
-
       {/* Login Form */}
       <form className="mb-5 w-full" onSubmit={handleSubmitLogin(handleLogin)}>
         {isErrorLogin && (
-          <p className="text-red-500 mb-2 text-sm">
+          <p className="text-red-500 mb-2 text-sm lg:text-md 2xl:text-xl">
             {errorLogin?.response?.data?.message}
           </p>
         )}
@@ -56,10 +55,10 @@ const LoginForm = (props) => {
               }`}
               classLabel={`${
                 isDarkMode ? "text-white" : ""
-              } font-semibold text-sm`}
+              } font-semibold text-sm lg:text-md 2xl:text-xl`}
               classInput={`${
                 isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-              } border-2 border-gray-400 py-1.5 px-3 rounded-md text-sm`}
+              } border-2 border-gray-400 py-1.5 px-3 rounded-md text-sm lg:text-md 2xl:text-xl`}
               field={field}
             >
               Email Address
@@ -67,7 +66,9 @@ const LoginForm = (props) => {
           )}
         />
         {errors?.email && (
-          <p className="text-red-500 mb-2 text-sm">{errors.email.message}</p>
+          <p className="text-red-500 mb-2 text-sm lg:text-md 2xl:text-xl">
+            {errors.email.message}
+          </p>
         )}
         <Controller
           name="password"
@@ -81,10 +82,10 @@ const LoginForm = (props) => {
               }`}
               classLabel={`${
                 isDarkMode ? "text-white" : ""
-              } font-semibold text-sm`}
+              } font-semibold text-sm lg:text-md 2xl:text-xl`}
               classInput={`${
                 isDarkMode ? "text-white bg-[var(--bg-dark)]" : ""
-              } w-full border-2 border-gray-400 py-1.5 px-3 rounded-md pr-10 text-sm`}
+              } w-full border-2 border-gray-400 py-1.5 px-3 rounded-md pr-10 text-sm lg:text-md 2xl:text-xl`}
               field={field}
             >
               Password
@@ -93,11 +94,13 @@ const LoginForm = (props) => {
         />
 
         {errors?.password && (
-          <p className="text-red-500 mb-2 text-sm">{errors.password.message}</p>
+          <p className="text-red-500 mb-2 text-sm lg:text-md 2xl:text-xl">
+            {errors.password.message}
+          </p>
         )}
 
-        <div className="flex justify-between mb-5">
-          <GeneralInput
+        <div className="flex justify-end mb-5">
+          {/* <GeneralInput
             type="checkbox"
             name="remember"
             classGeneral="flex justify-center items-center gap-2 group text-sm"
@@ -109,13 +112,13 @@ const LoginForm = (props) => {
             classInput=""
           >
             Remember Me
-          </GeneralInput>
+          </GeneralInput> */}
 
           {/* Forgot Password */}
           <Link
             className={` ${
               isDarkMode ? "text-white" : "text-[var(--primary-color)]"
-            } font-semibold hover:underline text-sm`}
+            } font-semibold hover:underline text-sm lg:text-md 2xl:text-xl`}
             to="/forgot-password"
           >
             Forgot Password?
@@ -124,7 +127,7 @@ const LoginForm = (props) => {
 
         {/* Sign In */}
         <button
-          className="w-full py-2 bg-[var(--primary-color)] cursor-pointer rounded-lg text-white text-sm text-center font-semibold hover:bg-[var(--primary-hover)]"
+          className="w-full py-2 bg-[var(--primary-color)] lg:text-md 2xl:text-xl cursor-pointer rounded-lg text-white text-sm text-center font-semibold hover:bg-[var(--primary-hover)]"
           type="submit"
           disabled={isPendingLogin || isSuccessLogin}
         >
@@ -135,16 +138,15 @@ const LoginForm = (props) => {
           )}
         </button>
       </form>
-      <div className="w-full self-center flex items-center mb-5">
+      {/* <div className="w-full self-center flex items-center mb-5">
         <hr className=" flex-grow border-gray-500/30" />
         <p className="mx-2.5 text-sm text-[var(--text-secondary)]">
           Or continue with
         </p>
         <hr className="flex-grow border-gray-500/30" />
-      </div>
-
+      </div> */}
       {/* Sign in with Google */}
-      <button
+      {/* <button
         type="button"
         className={`w-full border-2 cursor-pointer border-gray-400/20 mb-4 py-2 rounded-lg flex items-center justify-center gap-3 hover:border-gray-400 hover:bg-gray-400 transition`}
       >
@@ -156,14 +158,13 @@ const LoginForm = (props) => {
         >
           Sign in with Google
         </span>
-      </button>
-
+      </button> */}{" "}
       {/* Don't have an account? */}
-      <p className="text-sm">
+      <p className="text-sm lg:text-md 2xl:text-xl">
         Don&apos;t have an account?{" "}
         <Link
           to="/register"
-          className="text-[var(--primary-color)] font-semibold hover:underline"
+          className="text-[var(--primary-color)] lg:text-sm 2xl:text-xl font-semibold hover:underline"
         >
           Sign up
         </Link>
