@@ -38,21 +38,21 @@ const Navbar = () => {
     <nav className="w-full fixed top-0 left-1/2 -translate-x-1/2 px-6 sm:px-12 py-2 flex justify-between items-center bg-white shadow-md z-50">
       {/* Logo */}
       <Link to="/" className="flex gap-1 items-center cursor-default">
-        <GiSuitcase className="text-5xl text-[var(--primary-color)]" />
-        <h1 className="text-xl font-bold text-[var(--primary-color)]">
+        <GiSuitcase className="text-4xl md:text-4xl xl:text-6xl 2xl:text-7xl text-[var(--primary-color)]" />
+        <h1 className="text-sm md:text-md xl:text-2xl 2xl:text-3xl font-bold text-[var(--primary-color)]">
           JobNetra
         </h1>
       </Link>
 
       {/* Desktop Menu */}
-      <div className="hidden sm:flex gap-8">
+      <div className="hidden sm:flex gap-8 lg:text-md text-sm xl:text-xl 2xl:text-3xl">
         <Link
           to="/"
           className={`${
             location.pathname === "/"
               ? "text-[var(--primary-hover)] after:scale-x-100"
               : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
-          } relative font-bold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          } relative font-bold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
         >
           Home
         </Link>
@@ -63,7 +63,7 @@ const Navbar = () => {
             location.pathname === "/skills"
               ? "text-[var(--primary-hover)] after:scale-x-100"
               : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
-          } relative font-bold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          } relative font-bold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
         >
           Skills
         </Link>
@@ -79,7 +79,7 @@ const Navbar = () => {
             location.pathname === "/tutorial"
               ? "text-[var(--primary-hover)] after:scale-x-100"
               : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
-          } relative font-bold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          } relative font-bold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
         >
           Tutorial
         </Link>
@@ -90,7 +90,7 @@ const Navbar = () => {
             location.pathname === "/about"
               ? "text-[var(--primary-hover)] after:scale-x-100"
               : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
-          } relative font-bold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          } relative font-bold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
         >
           About
         </Link>
@@ -100,7 +100,7 @@ const Navbar = () => {
       {!isAuthenticated && !isLoadingAuthentication ? (
         <Link
           to="/login"
-          className="hidden sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"
+          className="hidden 2xl:text-3xl text-sm 2xl:px-7 xl:text-xl lg:text-md md:py-1 sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"
         >
           Sign In
         </Link>
@@ -111,7 +111,7 @@ const Navbar = () => {
             await logout();
             navigate("/login");
           }}
-          className="hidden sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)]"
+          className="hidden 2xl:text-3xl 2xl:px-7 2xl:py-3 xl:text-xl lg:text-md lg:py-1.5 lg:px-5 text-sm md:py-1.5 md:px-4 md:text-md sm:inline-block py-2 px-6 bg-[var(--secondary-color)] text-white font-medium rounded-lg hover:bg-[var(--secondary-hover)]"
         >
           Sign Out
         </button>
@@ -129,7 +129,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         ref={menuRef}
-        className={`absolute top-full left-0 w-full bg-white shadow-md sm:hidden flex flex-col gap-4 px-10 transition-all duration-500 ease-in-out overflow-hidden ${
+        className={`text-sm absolute top-full left-0 w-full bg-white shadow-md sm:hidden flex flex-col gap-4 px-10 transition-all duration-500 ease-in-out overflow-hidden ${
           menuOpen ? "max-h-96 py-4 opacity-100" : "max-h-0 py-0 opacity-0"
         }`}
       >
@@ -139,7 +139,7 @@ const Navbar = () => {
             location.pathname === "/"
               ? "text-[var(--primary-hover)] after:scale-x-100"
               : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
-          } text-center relative font-semibold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          } text-center relative font-semibold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
           onClick={() => setMenuOpen(false)}
         >
           Home
@@ -151,7 +151,7 @@ const Navbar = () => {
             location.pathname === "/skills"
               ? "text-[var(--primary-hover)] after:scale-x-100"
               : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
-          } text-center relative font-semibold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          } text-center relative font-semibold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
           onClick={() => setMenuOpen(false)}
         >
           Skills
@@ -169,7 +169,7 @@ const Navbar = () => {
             location.pathname === "/tutorial"
               ? "text-[var(--primary-hover)] after:scale-x-100"
               : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
-          } text-center relative font-semibold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          } text-center relative font-semibold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
           onClick={() => setMenuOpen(false)}
         >
           Tutorial
@@ -181,7 +181,7 @@ const Navbar = () => {
             location.pathname === "/about"
               ? "text-[var(--primary-hover)] after:scale-x-100"
               : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
-          } text-center relative font-semibold text-lg after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+          } text-center relative font-semibold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
           onClick={() => setMenuOpen(false)}
         >
           About
@@ -189,7 +189,7 @@ const Navbar = () => {
         {!isAuthenticated && !isLoadingAuthentication ? (
           <Link
             to="/login"
-            className="py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)] text-center"
+            className="py-2 text-md px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)] text-center"
             onClick={() => setMenuOpen(false)}
           >
             Sign In
@@ -202,7 +202,7 @@ const Navbar = () => {
               navigate("/login");
               setMenuOpen(false);
             }}
-            className="py-2 px-6 bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)] text-center"
+            className="py-1.5 px-6 text-md bg-[var(--secondary-color)] text-white font-semibold rounded-lg hover:bg-[var(--secondary-hover)] text-center"
           >
             Sign Out
           </button>
