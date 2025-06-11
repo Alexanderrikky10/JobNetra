@@ -19,7 +19,7 @@ const ForgotPasswordForm = (props) => {
     errorForgotPassword,
   } = props;
   return (
-    <div className="flex-1/2 py-6 rounded-lg flex flex-col items-start justify-center lg:px-20 md:px-12 px-12">
+    <div className="flex-1/2 rounded-lg flex flex-col items-start justify-center">
       {/* Logo */}
       {/* <div className="mb-7">
         <p>JobNetra</p>
