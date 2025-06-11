@@ -24,7 +24,7 @@ const Tutorial = () => {
         </section>
 
         {/* Tutorials */}
-        <section className="bg-white w-full flex flex-col items-center p-10 mt-10 gap-8 max-w-3xl mx-auto">
+        <section className="bg-white w-full flex flex-col items-center p-10 mt-10 gap-8 max-w-3xl mx-auto rounded-4xl">
           <h2 className="text-3xl font-bold text-center">Step-by-Step Guide</h2>
 
           {/* Step 1 */}

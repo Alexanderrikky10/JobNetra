@@ -13,6 +13,7 @@ import ForgotPassword from "./pages/forgotPassword/forgotPassword";
 import EmailConfirmation from "./pages/emailConfirmation";
 import ResetPassword from "./pages/resetPassword";
 import InputSkill from "./pages/inputSkill";
+import NotFound from "./pages/notFound";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/tutorial" element={<Tutorial />} />
             <Route path="/skills" element={<InputSkill />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
