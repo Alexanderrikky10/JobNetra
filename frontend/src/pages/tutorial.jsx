@@ -9,77 +9,85 @@ import NavLayout from "../components/Layouts/NavLayout";
 
 const Tutorial = () => {
   return (
-    <>
-      <NavLayout>
-        <div className="flex flex-col justify-center px-10 md:px-46">
-          {/* Header */}
-          <section className="w-full flex flex-col items-center pt-8 pb-10 gap-2">
-            <h2 className="text-3xl font-bold">
-              Getting Started with{" "}
-              <span className="text-[var(--primary-color)]">JobNetra</span>
-            </h2>
-            <p>
-              Learn how to make the most of JobNetra&apos;s AI powered features
-              to find your dream job quickly and efficiently.
-            </p>
+    <NavLayout>
+      <div className="flex flex-col px-5 md:px-20 pt-12">
+        {/* Header */}
+        <section className="max-w-2xl mx-auto flex flex-col gap-6 items-center">
+          <h2 className="text-3xl font-bold text-center">
+            Getting Started with{" "}
+            <span className="text-[var(--primary-color)]">JobNetra</span>
+          </h2>
+          <p className="text-lg text-center">
+            Learn how to make the most of JobNetra&apos;s AI powered features to
+            find your dream job quickly and efficiently.
+          </p>
+        </section>
+
+        {/* Tutorials */}
+        <section className="bg-white w-full flex flex-col items-center p-10 mt-10 gap-8 max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-center">Step-by-Step Guide</h2>
+
+          {/* Step 1 */}
+          <section className="flex flex-col md:flex-row items-center w-full gap-2 md:gap-5">
+            <div className="bg-[var(--primary-color)] flex w-10 h-10 justify-center items-center md:self-start rounded-full shrink-0">
+              <p className="text-white font-semibold">1</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="font-bold text-2xl md:text-start text-center">
+                Create Your Profile
+              </h3>
+              <p className="text-center md:text-start">
+                Start by creating your professional profile. Fill in your work
+                experience, education, skills, and preferences. The more
+                detailed your profile, the better our AI can match you with
+                relevant opportunities.
+              </p>
+            </div>
           </section>
 
-          {/* Tutorials */}
-          <section className="bg-white w-full flex flex-col items-center py-10 mb-8 gap-8">
-            <h2 className="text-3xl font-bold">Step-by-Step Guide</h2>
-
-            {/* Step 1 */}
-            <section className="flex w-auto gap-6">
-              <div className="bg-[var(--primary-color)] flex w-10 h-10 justify-center items-center self-start rounded-full shrink-0">
-                <p className="text-white font-semibold">1</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-2xl">Create Your Profile</h3>
-                <p>
-                  Start by creating your professional profile. Fill in your work
-                  experience, education, skills, and preferences. The more
-                  detailed your profile, the better our AI can match you with
-                  relevant opportunities.
-                </p>
-              </div>
-            </section>
-
-            {/* Step 2 */}
-            <section className="flex w-auto gap-6">
-              <div className="bg-[var(--secondary-color)] flex w-10 h-10 justify-center items-center self-start rounded-full shrink-0">
-                <p className="text-white font-semibold">2</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-2xl">Set Your Preferences</h3>
-                <p>
-                  Customize your job preferences including desired salary range,
-                  location, work type (remote/hybrid/onsite), and industry
-                  preferences. This helps our AI filter the most relevant
-                  opportunities for you.
-                </p>
-              </div>
-            </section>
-
-            {/* Step 3 */}
-            <section className="flex w-auto gap-6">
-              <div className="bg-[var(--primary-color)] flex w-10 h-10 justify-center items-center self-start rounded-full shrink-0">
-                <p className="text-white font-semibold">3</p>
-              </div>
-              <div>
-                <h3 className="font-bold text-2xl">Apply and Track</h3>
-                <p>
-                  Once you find interesting opportunities, apply directly
-                  through our platform. Track your application status, receive
-                  notifications, and manage your job search journey effectively.
-                </p>
-              </div>
-            </section>
+          {/* Step 2 */}
+          <section className="flex flex-col md:flex-row items-center w-full gap-2 md:gap-5">
+            <div className="bg-[var(--secondary-color)] flex w-10 h-10 justify-center items-center md:self-start rounded-full shrink-0">
+              <p className="text-white font-semibold">2</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="font-bold text-2xl md:text-start text-center">
+                Set Your Preferences
+              </h3>
+              <p className="text-center md:text-start">
+                Customize your job preferences including desired salary range,
+                location, work type (remote/hybrid/onsite), and industry
+                preferences. This helps our AI filter the most relevant
+                opportunities for you.
+              </p>
+            </div>
           </section>
 
-          {/* Frequently Asked Questions */}
+          {/* Step 3 */}
+          <section className="flex flex-col md:flex-row items-center w-full gap-2 md:gap-5">
+            <div className="bg-[var(--primary-color)] flex w-10 h-10 justify-center items-center md:self-start rounded-full shrink-0">
+              <p className="text-white font-semibold">3</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="font-bold text-2xl md:text-start text-center">
+                Apply and Track
+              </h3>
+              <p className="text-center md:text-start">
+                Once you find interesting opportunities, apply directly through
+                our platform. Track your application status, receive
+                notifications, and manage your job search journey effectively.
+              </p>
+            </div>
+          </section>
+        </section>
 
-          <section className="w-full flex flex-col items-center py-10 mb-8 gap-4">
-            <h2 className="text-3xl font-bold">Frequently Asked Questions</h2>
+        {/* Frequently Asked Questions */}
+
+        <section className="max-w-3xl mx-auto flex flex-col items-center mt-12 mb-8 gap-8">
+          <h2 className="text-3xl font-bold text-center">
+            Frequently Asked Questions
+          </h2>
+          <div className="flex flex-col gap-4">
             <Accordion>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
@@ -133,10 +141,10 @@ const Tutorial = () => {
                 opportunities are posted.
               </AccordionDetails>
             </Accordion>
-          </section>
-        </div>
-      </NavLayout>
-    </>
+          </div>
+        </section>
+      </div>
+    </NavLayout>
   );
 };
 

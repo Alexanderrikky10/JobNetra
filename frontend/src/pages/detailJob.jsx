@@ -7,7 +7,6 @@ import { getJobs } from "../services/product";
 import Pagination from "../components/Fragments/Pagination";
 import { useAuth } from "../hooks/useAuth";
 import { useRouterReady } from "../hooks/useQueryReady";
-import { set } from "react-hook-form";
 
 const DetailJobPage = () => {
   const navigate = useNavigate();
@@ -83,22 +82,6 @@ const DetailJobPage = () => {
     isLoadingAuthentication,
   ]);
 
-  // useEffect(() => {
-  //   try {
-  //     setIsLoading(true);
-  //     const data = dummyData["jobs"];
-  //     if (data.length > 0) {
-  //       setData(data);
-  //     } else {
-  //       throw new Error("Data not found");
-  //     }
-  //   } catch (error) {
-  //     setIsError(error.message);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // }, []);
-
   const handleAddSalary = (e) => {
     const newParams = new URLSearchParams(searchParams);
     newParams.set("salary", e.target.value);
@@ -108,10 +91,10 @@ const DetailJobPage = () => {
 
   return (
     <NavLayout>
-      <section className="min-h-11/12 px-10 md:px-20 pt-10 flex flex-col items-center justify-between">
+      <section className="min-h-11/12 px-5 md:px-20 pt-10 flex flex-col items-center justify-between">
         <div className="w-full flex flex-col">
-          <div className="w-full flex justify-between">
-            <div className="flex flex-col gap-3">
+          <div className="w-full flex flex-col md:flex-row md:justify-between gap-3">
+            <div className="flex flex-col gap-3 order-2 md:order-0">
               <h2 className="text-3xl font-semibold">Recommended Jobs</h2>
               {keyword !== "" && (
                 <p className="text-lg">
@@ -124,15 +107,15 @@ const DetailJobPage = () => {
             </div>
             <Link
               to="/"
-              className="flex gap-2 items-center font-bold text-[var(--primary-color)] hover:text-[var(--primary-hover)]"
+              className="order-1 flex gap-2 items-center font-bold text-[var(--primary-color)] hover:text-[var(--primary-hover)]"
             >
               <FaArrowLeft />
               <p> Back to Search</p>
             </Link>
           </div>
 
-          <div className="mt-14 bg-white w-full py-5 px-6 rounded-lg flex justify-between items-center">
-            <div className="flex items-center gap-2">
+          <div className="mt-14 bg-white w-full py-5 px-6 rounded-lg flex flex-col md:flex-row gap-4 justify-between items-center">
+            <div className="flex  items-center gap-2">
               <label className="font-semibold" htmlFor="salary">
                 Min Salary:
               </label>

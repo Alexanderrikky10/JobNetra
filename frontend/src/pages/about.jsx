@@ -1,16 +1,13 @@
-import React from "react";
 import NavLayout from "../components/Layouts/NavLayout";
-import { FaSearch } from "react-icons/fa";
-import { FaClock, FaPaperPlane, FaRobot, FaUserPlus } from "react-icons/fa6";
+import { FaClock, FaRobot } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import JobSearchCard from "../components/Fragments/JobSearchCard";
 import { SiTarget } from "react-icons/si";
 import TeamCard from "../components/Fragments/TeamCard";
 
 const AboutPage = () => {
   return (
     <NavLayout>
-      <section className="flex gap-20 pt-12 items-center px-20">
+      <section className="flex gap-20 pt-12 items-center px-10 md:px-20">
         <div className="flex-1/2 flex flex-col justify-center">
           <h2 className="text-5xl font-bold">About JobNetra</h2>
           <p className="text-lg mt-10">
@@ -44,7 +41,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="px-20 shadow-md shadow-black/20 mt-20 bg-white py-10 rounded-2xl flex justify-center">
+      <section className="px-10 md:px-20 shadow-md shadow-black/20 mt-20 bg-white py-10 rounded-2xl flex justify-center">
         <div className="max-w-5xl flex flex-col items-center ">
           <h2 className="text-4xl font-bold text-center">Our Mission</h2>
           <p className="text-xl text-[var(--text-secondary)] mt-6 text-center">
@@ -93,7 +90,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="px-20 mt-20 py-10 rounded-2xl flex justify-center">
+      <section className="px-10 md:px-20 mt-20 py-10 rounded-2xl flex justify-center">
         <div className="max-w-5xl flex flex-col items-center ">
           <h2 className="text-4xl font-bold text-center">Meet Our Team</h2>
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 py-5">
@@ -140,7 +137,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className="mt-20 flex flex-col items-center justify-center gap-6 shadow-sm shadow-black/20 px-20 min-h-96 bg-white py-12 w-full">
+      <section className="mt-20 flex flex-col items-center justify-center gap-6 shadow-sm shadow-black/20 px-10 md:px-20 min-h-96 bg-white py-12 w-full">
         <h2 className="text-4xl font-bold text-center">Get in Touch</h2>
         <p className="text-xl text-[var(--text-secondary)] mt-6 text-center">
           Have questions about JobNetra? We{`'`}d love to hear from you.

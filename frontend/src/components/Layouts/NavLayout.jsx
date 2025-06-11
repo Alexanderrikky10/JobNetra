@@ -6,7 +6,7 @@ const NavLayout = (props) => {
   return (
     <div className="min-h-screen relative mx-auto">
       <Navbar />
-      <div className="pt-20">{children}</div>
+      <div className="pt-10">{children}</div>
     </div>
   );
 };

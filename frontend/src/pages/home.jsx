@@ -8,7 +8,7 @@ import JobSearchCard from "../components/Fragments/JobSearchCard";
 const HomePage = () => {
   return (
     <NavLayout>
-      <section className="flex gap-20 pt-12 items-center px-20">
+      <section className="flex gap-20 pt-20 md:pt-12  items-center px-10 md:px-20">
         <div className="flex-auto flex flex-col justify-center">
           <h2 className="text-5xl font-bold">
             Find Your Dream Job With{" "}
@@ -43,7 +43,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="mt-32 grid grid-cols-2 shadow-sm shadow-black/20 sm:flex gap-y-12 sm:gap-0 px-20 sm:justify-evenly bg-white py-12 w-full">
+      <section className="mt-32 grid grid-cols-2 shadow-sm shadow-black/20 sm:flex gap-y-12 sm:gap-0 px-10 md:px-20 sm:justify-evenly bg-white py-12 w-full">
         <div className="flex flex-col items-center gap-1.5">
           <p className="text-[var(--primary-color)] text-3xl font-bold">2M+</p>
           <p className="text-lg">Active Users</p>
@@ -66,15 +66,13 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section
-        className="mt-20 py-8 shadow-black/20 shadow-md px-7 sm:px-16
-        rounded-4xl flex flex-col items-center bg-[var(--primary-color)] w-10/12
-        mx-auto"
-      >
-        <JobSearchCard />
+      <section className="mt-20 shadow-black/20 w-full px-5 md:px-20">
+        <div className="rounded-4xl flex flex-col items-center bg-[var(--primary-color)] p-10 shadow-md">
+          <JobSearchCard />
+        </div>
       </section>
 
-      <section className="px-20 shadow-md shadow-black/20 mt-20 flex flex-col items-center bg-white py-10">
+      <section className="px-10 md:px-20 shadow-md shadow-black/20 mt-20 flex flex-col items-center bg-white py-10">
         <h2 className="text-4xl font-bold text-center">How JobNetra Works</h2>
         <p className="text-lg text-[var(--text-secondary)] mt-4 text-center">
           Simple steps to find your next opportunity
@@ -110,7 +108,7 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section className="shadow-md shadow-black/20 flex flex-col items-center bg-[var(--primary-color)] py-20 px-20">
+      <section className="shadow-md shadow-black/20 flex flex-col items-center bg-[var(--primary-color)] py-20 px-10 md:px-20">
         <h2 className="text-4xl font-bold text-white text-center">
           Ready to Start Your Journey?
         </h2>

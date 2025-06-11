@@ -233,132 +233,136 @@ const InputSkill = () => {
   return (
     <NavLayout>
       {!isPending ? (
-        <div className="">
-          <section className="flex flex-col items-center justify-center mt-4 text-center">
+        <div className="pt-10 px-5 md:px-10">
+          <section className="flex flex-col items-center gap-4 justify-center text-center w-full max-w-xl mx-auto">
             <h1 className="text-3xl font-bold">Tell us about your skills</h1>
-            <p className="max-w-md">
+            <p className="w-full">
               Select skills and your preferred location to get personalized job
-              recommendations
+              recommendations by our AI.
             </p>
           </section>
 
-          <div className="flex flex-col items-center justify-center">
-            <form
-              className="bg-white border-1 border-gray-400 m-8 lg:w-1/2 p-6 rounded-md"
-              onSubmit={handleSubmit}
-            >
-              <div className="mb-6">
-                <label className="block font-semibold after:content-['*'] after:text-red-500">
-                  Select your skills{" "}
-                </label>
-                <p className="text-gray-500 mb-2 text-sm">
-                  Enter between 4 to 8 skills. Press Enter or Tab to add a
-                  skill.
-                </p>
-                <SelectInput
-                  isMulti={true}
-                  components={components}
-                  inputValue={inputValue}
-                  handleChange={handleChange}
-                  handleInputChange={(newValue) =>
-                    handleOnInputChange(newValue)
-                  }
-                  handleKeyDown={handleKeyDown}
-                  value={skills}
-                  error={multiErrorText !== ""}
-                />
-                {multiErrorText != "" && (
-                  <p className="text-red-500 mt-2">{multiErrorText}</p>
-                )}
-              </div>
-              <div className="mb-6">
-                <label className="block mb-2 font-semibold after:content-['*'] after:text-red-500">
-                  Preferred Location{" "}
-                </label>
-                <SelectInput
-                  handleChange={handleChangeLocation}
-                  isMulti={false}
-                  error={selectErrorText !== ""}
-                  value={selectedLocation}
-                />
-                {selectErrorText != "" && (
-                  <p className="text-red-500 mt-2">{selectErrorText}</p>
-                )}
-              </div>
-              <div className="flex gap-2 md:flex-row flex-col">
-                <button
-                  className="bg-[var(--primary-color)] grow-2 py-2 rounded-md hover:bg-[var(--primary-hover)] cursor-pointer"
-                  type="submit"
-                  disabled={isPending}
-                >
-                  <p className="text-white font-semibold" type="submit">
-                    {isPending ? (
-                      <CircularProgress size={20} color="inherit" />
-                    ) : (
-                      "Predict Matching Jobs"
-                    )}
+          <section className="flex flex-col items-center justify-center gap-15 max-w-xl py-10 mx-auto">
+            <div className="flex flex-col items-center justify-center w-full">
+              <form
+                className="bg-white border-1 border-gray-400 w-full p-6 rounded-md"
+                onSubmit={handleSubmit}
+              >
+                <div className="mb-6">
+                  <label className="block font-semibold after:content-['*'] after:text-red-500">
+                    Select your skills{" "}
+                  </label>
+                  <p className="text-gray-500 mb-2 text-sm">
+                    Enter between 4 to 8 skills. Press Enter or Tab to add a
+                    skill.
                   </p>
-                </button>
-                <button
-                  className="border-1 px-4 rounded-md font-semibold py-2 cursor-pointer hover:bg-gray-200"
-                  onClick={handleReset}
-                  type="button"
-                >
-                  Reset
-                </button>
-              </div>
-            </form>
-          </div>
-          {history !== "" && (
-            <section className="flex flex-col items-center justify-center mt-4 text-center mx-auto">
-              <hr className="w-10/12 mb-7 text-gray-400" />
-              <h3 className="text-[var(--text-secondary)] text-3xl font-semibold mb-4">
-                History
-              </h3>
-              <div className="bg-white border-1 border-gray-400 mx-8 lg:w-1/2 p-6 rounded-md">
-                <form
-                  onSubmit={handleSubmitHistory}
-                  className="flex flex-col justify-center items-start"
-                >
-                  <h4 className="text-lg text-[var(--text-secondary)] text-start">
-                    Your latest prediction:
-                  </h4>
-                  <p className="text-[var(--secondary-color)] text-start">
-                    {history}
-                  </p>
-                  <div className="w-full text-start">
-                    <label className="block mb-2 font-semibold after:content-['*'] after:text-red-500 mt-4">
-                      Preferred Location{" "}
-                    </label>
-                    <SelectInput
-                      handleChange={handleChangeLocationHistory}
-                      isMulti={false}
-                      error={selectErrorHistoryText !== ""}
-                      value={historyLocation}
-                    />
-                    {selectErrorHistoryText != "" && (
-                      <p className="text-red-500 mt-2">{selectErrorHistoryText}</p>
-                    )}
-                  </div>
+                  <SelectInput
+                    isMulti={true}
+                    components={components}
+                    inputValue={inputValue}
+                    handleChange={handleChange}
+                    handleInputChange={(newValue) =>
+                      handleOnInputChange(newValue)
+                    }
+                    handleKeyDown={handleKeyDown}
+                    value={skills}
+                    error={multiErrorText !== ""}
+                  />
+                  {multiErrorText != "" && (
+                    <p className="text-red-500 mt-2">{multiErrorText}</p>
+                  )}
+                </div>
+                <div className="mb-6">
+                  <label className="block mb-2 font-semibold after:content-['*'] after:text-red-500">
+                    Preferred Location{" "}
+                  </label>
+                  <SelectInput
+                    handleChange={handleChangeLocation}
+                    isMulti={false}
+                    error={selectErrorText !== ""}
+                    value={selectedLocation}
+                  />
+                  {selectErrorText != "" && (
+                    <p className="text-red-500 mt-2">{selectErrorText}</p>
+                  )}
+                </div>
+                <div className="flex gap-2 md:flex-row flex-col">
                   <button
+                    className="bg-[var(--primary-color)] grow-2 py-2 rounded-md hover:bg-[var(--primary-hover)] cursor-pointer"
                     type="submit"
-                    className="mt-4 w-full bg-[var(--primary-color)] grow-2 py-2 rounded-md hover:bg-[var(--primary-hover)] cursor-pointer"
+                    disabled={isPending}
                   >
                     <p className="text-white font-semibold" type="submit">
                       {isPending ? (
                         <CircularProgress size={20} color="inherit" />
                       ) : (
-                        "Find Jobs"
+                        "Predict Matching Jobs"
                       )}
                     </p>
                   </button>
-                </form>
+                  <button
+                    className="border-1 px-4 rounded-md font-semibold py-2 cursor-pointer hover:bg-gray-200"
+                    onClick={handleReset}
+                    type="button"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </form>
+            </div>
+            {history !== "" && (
+              <div className="flex flex-col items-center justify-center text-center w-full">
+                <hr className="w-full mb-7 text-gray-400" />
+                <h3 className="text-[var(--text-secondary)] text-3xl font-semibold mb-4">
+                  History
+                </h3>
+                <div className="bg-white border-1 border-gray-400 mx-8 w-full p-6 rounded-md">
+                  <form
+                    onSubmit={handleSubmitHistory}
+                    className="flex flex-col justify-center w-full items-start"
+                  >
+                    <h4 className="text-lg text-[var(--text-secondary)] text-start">
+                      Your latest prediction:
+                    </h4>
+                    <p className="text-[var(--secondary-color)] text-start">
+                      {history}
+                    </p>
+                    <div className="w-full text-start">
+                      <label className="block mb-2 font-semibold after:content-['*'] after:text-red-500 mt-4">
+                        Preferred Location{" "}
+                      </label>
+                      <SelectInput
+                        handleChange={handleChangeLocationHistory}
+                        isMulti={false}
+                        error={selectErrorHistoryText !== ""}
+                        value={historyLocation}
+                      />
+                      {selectErrorHistoryText != "" && (
+                        <p className="text-red-500 mt-2">
+                          {selectErrorHistoryText}
+                        </p>
+                      )}
+                    </div>
+                    <button
+                      type="submit"
+                      className="mt-4 w-full bg-[var(--primary-color)] grow-2 py-2 rounded-md hover:bg-[var(--primary-hover)] cursor-pointer"
+                    >
+                      <p className="text-white font-semibold" type="submit">
+                        {isPending ? (
+                          <CircularProgress size={20} color="inherit" />
+                        ) : (
+                          "Find Jobs"
+                        )}
+                      </p>
+                    </button>
+                  </form>
+                </div>
               </div>
-            </section>
-          )}
+            )}
+          </section>
         </div>
       ) : (
-        <div className="min-h-[80vh] flex justify-center items-center flex-col gap-10">
+        <div className="min-h-[80vh] flex justify-center items-center flex-col gap-10 px-5">
           <div className="loader mx-auto my-10"></div>
           <h1 className="text-3xl text-[var(--primary-color)] font-bold text-center">
             {phrase}
