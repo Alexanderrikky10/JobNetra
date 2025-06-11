@@ -6,8 +6,8 @@ const FooterLayout = () => {
 
   return (
     <>
-      <div className="bg-[var(--bg-light)] ">
-        <div className="flex flex-col items-center m-6 mb-2">
+      <div className="bg-[#c4c2c2] py-5">
+        <div className="flex flex-col items-center m-6 mb-5">
           <div className="md:flex md:flex-row md:justify-between w-full px-10 md:gap-20">
             <section className="flex flex-col items-center mb-4 md:flex-1/2 md:items-start">
               <div className="flex flex-col items-center md:items-start">
@@ -29,7 +29,11 @@ const FooterLayout = () => {
                 <div className="my-2 flex flex-col items-center gap-3 lg:text-md text-sm md:items-start">
                   <Link
                     to="/"
-                    className={`${"text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"} relative font-bold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
+                    className={`${
+                      location.pathname === "/"
+                        ? "text-[var(--primary-hover)] after:scale-x-100"
+                        : "text-[var(--text-nav)] hover:text-[var(--primary-hover)] hover:after:scale-x-100"
+                    } relative font-bold after:content-[''] after:absolute after:-bottom-1 after:left-1/2 after:-translate-x-1/2 after:w-full after:h-[2px] after:bg-[var(--primary-hover)] after:transition-all after:duration-300 after:scale-x-0 origin-center`}
                   >
                     Home
                   </Link>
