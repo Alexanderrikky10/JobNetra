@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/login";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { DarkMode } from "./context/DarkMode";
 import DetailJobPage from "./pages/detailJob";
 import HomePage from "./pages/home";
