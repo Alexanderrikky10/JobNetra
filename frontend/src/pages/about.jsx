@@ -98,40 +98,40 @@ const AboutPage = () => {
               name="Alexander Rikky"
               image="/images/team/rikky.jpg"
               role="Team Leader"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, eligendi?"
+              description="Back-End Web Developer"
             />
             <TeamCard
               name="Laurensius Nathan"
               image="/images/team/nathan.jpeg"
-              role="Front-end and Back-end Developer"
-              description="Frontend web developer specialized in modern UI, UX, and interactive web apps."
+              role="Front-End and Back-End Developer"
+              description="Front-End Web Developer"
             />
             <TeamCard
               name="Kevin Chaily"
               image="/images/team/KevinC.jpg"
-              role="Front-end and Back-end Developer"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, eligendi?"
+              role="Front-End and Back-End Developer"
+              description="Front-End Web Developer"
             />
 
             <TeamCard
               name="Andreas Kevin"
-              image="/images/team/avatar.png"
+              image="/images/team/andreas.jpeg"
               role="Machine Learning Engineer"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, eligendi?"
+              description="Machine Learning Engineer"
             />
 
             <TeamCard
               name="Robert Varian"
-              image="/images/team/avatar.png"
+              image="/images/team/robert.jpeg"
               role="Machine Learning Engineer"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, eligendi?"
+              description="Machine Learning Engineer"
             />
 
             <TeamCard
               name="Taufik Alwan"
-              image="/images/team/avatar.png"
+              image="/images/team/taufik.jpeg"
               role="Machine Learning Engineer"
-              description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis, eligendi?"
+              description="Machine Learning Engineer"
             />
           </div>
         </div>
