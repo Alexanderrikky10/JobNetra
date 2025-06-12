@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import SelectInput from "../components/Elements/SelectInput/SelectInput";
 import NavLayout from "../components/Layouts/NavLayout";
 import api from "../lib/api";
@@ -29,6 +29,7 @@ const InputSkill = () => {
   const [phrase, setPhrase] = useState("");
   const [history, setHistory] = useState("");
   const [historyLocation, setHistoryLocation] = useState(null);
+  const skillSelectRef = useRef(null);
 
   console.log(history);
 
@@ -67,29 +68,39 @@ const InputSkill = () => {
     }
   }, [navigate, isAuthenticated, isLoadingAuthentication]);
 
+  const addSkill = () => {
+    if (!inputValue) return;
+    if (skills.some((skill) => skill.value === inputValue)) {
+      setInputValue("");
+      return;
+    }
+
+    if (skills.length === 8) {
+      setMultiErrorText("You can only add a maximum of 8 skills.");
+      setInputValue("");
+      return;
+    }
+
+    setSkills((prev) => [...prev, createSkill(inputValue)]);
+    setInputValue("");
+  };
+
   const handleKeyDown = (event) => {
     if (!inputValue) return;
-    switch (event.key) {
-      case "Enter":
-      case "Tab":
-        if (skills.some((skill) => skill.value === inputValue)) {
-          setInputValue("");
-          event.preventDefault();
-          return;
-        }
-
-        // Validasi ga boleh lebih dari 9
-        if (skills.length === 8) {
-          setMultiErrorText("You can only add a maximum of 8 skills.");
-          setInputValue("");
-          event.preventDefault();
-          return;
-        }
-
-        setSkills((prev) => [...prev, createSkill(inputValue)]);
-        setInputValue("");
-        event.preventDefault();
+    if (event.key === "Enter" || event.key === "Tab") {
+      event.preventDefault();
+      addSkill();
     }
+  };
+
+  const handleBlur = () => {
+    addSkill();
+
+    setTimeout(() => {
+      if (skillSelectRef.current) {
+        skillSelectRef.current.focus();
+      }
+    }, 0);
   };
 
   const handleSubmit = async (event) => {
@@ -257,6 +268,7 @@ const InputSkill = () => {
                     skill.
                   </p>
                   <SelectInput
+                    ref={skillSelectRef}
                     isMulti={true}
                     components={components}
                     inputValue={inputValue}
@@ -265,6 +277,7 @@ const InputSkill = () => {
                       handleOnInputChange(newValue)
                     }
                     handleKeyDown={handleKeyDown}
+                    handleBlur={handleBlur}
                     value={skills}
                     error={multiErrorText !== ""}
                   />

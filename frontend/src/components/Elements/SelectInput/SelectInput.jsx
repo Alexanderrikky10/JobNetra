@@ -12,6 +12,7 @@ const SelectInput = ({
   handleInputChange = () => {},
   handleKeyDown = () => {},
   value = "",
+  ref,
 }) => {
   const customStyles = (hasError) => ({
     control: (base, state) => ({
@@ -100,6 +101,7 @@ const SelectInput = ({
         onKeyDown={handleKeyDown}
         styles={customStyles(error && value.length < 4)}
         value={value}
+        ref={ref}
       />
     ))
   );
