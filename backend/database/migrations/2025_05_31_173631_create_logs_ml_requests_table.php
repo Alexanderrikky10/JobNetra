@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('input_skills');    // 👈 input user
-            $table->string('result')->nullable();  // 👈 hasil dari machine learning
+            $table->json('result')->nullable();  // 👈 hasil dari machine learning
             $table->timestamp('timestamp')->useCurrent(); // waktu request
             $table->timestamps();
         });
