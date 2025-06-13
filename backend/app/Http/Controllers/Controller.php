@@ -1,0 +1,8 @@
+<?php
+
+namespace App\Http\Controllers;
+
+abstract class Controller
+{
+    //test untuk push ke github
+}

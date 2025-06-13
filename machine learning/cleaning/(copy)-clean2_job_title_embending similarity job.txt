@@ -1,0 +1,123 @@
+# import os
+# os.environ["TRANSFORMERS_NO_TF"] = "1"
+
+# import pandas as pd
+# from sentence_transformers import SentenceTransformer, util
+# import re
+# import torch
+
+# model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# df_skill = pd.read_csv("pekerjaan.csv", sep=",")
+# df_job = pd.read_csv("job_descriptions.csv", sep=",")  # <-- jangan lupa .csv di sini
+
+# link_titles = df_skill["clean_title"].tolist()[:100]
+# job_titles = df_job["Job Title"].tolist()
+
+# print("Encoding job titles...")
+# # job_title_embeddings = model.encode(job_titles, convert_to_tensor=True, batch_size=128, show_progress_bar=True)
+# # torch.save(job_title_embeddings, "job_title_embeddings.pt")
+
+# print("Load encoding file...")
+# job_title_embeddings = torch.load("job_title_embeddings.pt")
+
+
+# print("Encoding link titles...")
+# link_title_embeddings = model.encode(link_titles, convert_to_tensor=True, batch_size=128, show_progress_bar=True)
+
+# print("Calculating cosine similarity...")
+# cosine_scores = util.cos_sim(link_title_embeddings, job_title_embeddings)
+
+# print("Matching titles...")
+# top_match_indices = cosine_scores.argmax(dim=1)
+# similarity_scores = cosine_scores.max(dim=1).values
+
+# results = []
+# for idx, title in enumerate(link_titles):
+#     best_idx = top_match_indices[idx].item()
+#     similarity = similarity_scores[idx].item()
+#     best_title = job_titles[best_idx]
+#     skill = df_skill.iloc[idx]['job_skills']
+    
+#     results.append({
+#         'nama_pekerjaan': title,
+#         'skill': skill,
+#         'nama_pekerjaan_terbaik': best_title,
+#         'similarity_score': similarity
+#     })
+
+# df_results = pd.DataFrame(results)
+
+# df_results.to_csv("judul_pekerjaan/pekerjaan_dan_skill_fix.csv", index=False)
+# print(df_results)
+
+
+import os
+os.environ["TRANSFORMERS_NO_TF"] = "1"
+
+import pandas as pd
+from sentence_transformers import SentenceTransformer, util
+import torch
+
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+# Load data
+df_skill = pd.read_csv("pekerjaan.csv", sep=",")
+df_job = pd.read_csv("job_descriptions.csv", sep=",") 
+
+# Load job title embeddings yang sudah disimpan
+print("Loading pre-encoded job titles...")
+job_title_embeddings = torch.load("job_title_embeddings.pt")
+job_titles = df_job["Job Title"].tolist()
+
+# File output
+output_file = "judul_pekerjaan/pekerjaan_dan_skill_fix.csv"
+batch_size = 100
+
+# if os.path.exists(output_file):
+#     os.remove(output_file)
+#     print(f"File lama dihapus: {output_file}")
+
+# Looping per batch
+for start_idx in range(1048575, len(df_skill), batch_size):
+    end_idx = min(start_idx + batch_size, len(df_skill))
+    print(f"\nProcessing batch {start_idx} to {end_idx}")
+
+    # Ambil subset data
+    batch_df = df_skill.iloc[start_idx:end_idx]
+    link_titles = batch_df["clean_title"].tolist()
+
+    # Encoding link titles
+    link_title_embeddings = model.encode(link_titles, convert_to_tensor=True, batch_size=128, show_progress_bar=True)
+
+    # Cosine similarity
+    cosine_scores = util.cos_sim(link_title_embeddings, job_title_embeddings)
+    top_match_indices = cosine_scores.argmax(dim=1)
+    similarity_scores = cosine_scores.max(dim=1).values
+
+    # Simpan results
+    results = []
+    for idx, title in enumerate(link_titles):
+        best_idx = top_match_indices[idx].item()
+        similarity = similarity_scores[idx].item()
+        best_title = job_titles[best_idx]
+        skill = batch_df.iloc[idx]['job_skills']
+        
+        results.append({
+            'nama_pekerjaan': title,
+            'skill': skill,
+            'nama_pekerjaan_terbaik': best_title,
+            'similarity_score': similarity
+        })
+
+    df_results = pd.DataFrame(results)
+
+    # Append to CSV (tanpa header jika sudah ada file sebelumnya)
+    # if os.path.exists(output_file):
+    #     df_results.to_csv(output_file, mode='a', header=False, index=False)
+    # else:
+    #     df_results.to_csv(output_file, mode='w', header=True, index=False)
+
+    write_mode = 'a' if os.path.exists(output_file) else 'w'
+    df_results.to_csv(output_file, mode=write_mode, header=(write_mode == 'w'), index=False)
+print("\n Semua batch selesai diproses.")
