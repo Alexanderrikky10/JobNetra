@@ -7,12 +7,11 @@
 ## 🚀 Fitur Utama
 
 - Pencarian pekerjaan berdasarkan **skill/hobi** pengguna
-- Integrasi dengan **model Machine Learning**
+- Integrasi dengan **model Machine Learning** ( Content Based Filterring )
 - Dibangun menggunakan **React.js**, **React Query**, **Yup**, **React Hook Form**, dan **React Router**
 - Kolaborasi tim lintas fungsi (6 anggota), fokus pada pembagian kerja dan integrasi RESTful API
 - Manajemen state dengan **Context API**
 - Versi dev dikelola melalui **branch `dev`**
-
 ---
 
 ## 📌 Penting
